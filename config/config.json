@@ -4,7 +4,7 @@
     "password": "zvMjN1y4u0PSEzCjhxniteZF5RWbj9jT",
     "database": "suoynkka",
     "host": "salt.db.elephantsql.com",
-    "dialect": "mysql",
+    "dialect": "postgres",
     "operatorsAliases": false
   },
   "test": {
