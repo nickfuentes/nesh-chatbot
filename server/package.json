@@ -3,10 +3,6 @@
   "version": "1.0.0",
   "description": "",
   "main": "app.js",
-  "engines": {
-    "node": "v10.16.0",
-    "npm": "6.10.1"
-  },
   "scripts": {
     "start": "nodemon app.js"
   },
@@ -19,5 +15,8 @@
     "express": "^4.17.1",
     "pg": "^7.12.1",
     "sequelize": "^5.19.2"
+  },
+  "engines": {
+    "node": ">=10.0.0"
   }
 }
