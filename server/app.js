@@ -40,6 +40,15 @@ app.get("/lease-name-well-status", (req, res) => {
   })
 })
 
+app.get('/all-wells', (req, res) => {
+  models.Eagleford.findAll({
+    limit: 10
+  })
+  .then(wellsinfo => {
+    res.json(wellsinfo)
+  })
+})
+
 app.listen(3001, () => {
   console.log("Server is running...")
 })
