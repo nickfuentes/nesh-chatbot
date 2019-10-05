@@ -1,7 +1,7 @@
 "use strict";
 
 const dialogflow = require("dialogflow");
-const config = require("../nesh-config");
+const config = require("../config/nesh-config");
 const uuid = require("uuid");
 const sessionId = uuid.v4();
 const structjson = require("structjson");

@@ -7,6 +7,7 @@ app.use(cors());
 app.use(express.json());
 
 require("./routes/fulfillmentRoutes")(app);
+require("./routes/dialogFlowRoutes")(app);
 
 app.get("/", (req, res) => {
   res.send("NESH!!!");
