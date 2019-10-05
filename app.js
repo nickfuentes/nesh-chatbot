@@ -9,10 +9,6 @@ app.use(express.json());
 require("./routes/fulfillmentRoutes")(app);
 require("./routes/dialogFlowRoutes")(app);
 
-app.get("/", (req, res) => {
-  res.send("NESH!!!");
-});
-
 // Search  By API14
 app.get("/oil-well", (req, res) => {
   models.Eagleford.findAll({
