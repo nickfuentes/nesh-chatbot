@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "suoynkka",
+    "password": "zvMjN1y4u0PSEzCjhxniteZF5RWbj9jT",
+    "database": "suoynkka",
+    "host": "salt.db.elephantsql.com",
+    "dialect": "postgres"
+  },
+  "test": {
+    "username": "root",
+    "password": null,
+    "database": "database_test",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "production": {
+    "username": "root",
+    "password": null,
+    "database": "database_production",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  }
+}
