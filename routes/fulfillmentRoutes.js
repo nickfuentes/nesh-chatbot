@@ -1,5 +1,6 @@
 const { WebhookClient } = require("dialogflow-fulfillment");
 const models = require("../models");
+const utils = require("../utils/helpers");
 
 module.exports = app => {
   app.post("/", async (req, res) => {
@@ -21,11 +22,13 @@ module.exports = app => {
       });
 
       console.log(wellLocations);
-      const responseText = `Here are the well locations for ${agent.parameters.Basin}`;
+      const responseText = `Here are the well locations for ${utils.titleCase(
+        agent.parameters.Basin
+      )}`;
       const wellsText = `${wellLocations}`;
       agent.add(wellsText);
       agent.add(responseText);
-      console.log(agent.parameters);
+      console.log(utils.titleCase(agent.parameters.Basin));
     };
 
     function fallback(agent) {

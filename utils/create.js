@@ -1,8 +1,8 @@
 "use strict";
 
 const dialogflow = require("dialogflow");
-const config = require("./config/nesh-config");
-const models = require("./models");
+const config = require("../config/nesh-config");
+const models = require("../models");
 
 let neshConfig = {
   credentials: {
