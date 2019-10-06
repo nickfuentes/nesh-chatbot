@@ -11,14 +11,18 @@ require("./routes/dialogFlowRoutes")(app);
 
 // Search  By API14
 app.get("/oil-well", (req, res) => {
-  models.Eagleford.findAll({
-    where: {
-      api14: 42051340170000
-    }
-  }).then(wellsinfo => {
-    res.json(wellsinfo);
-    console.log(wellsinfo);
-  });
+  try {
+    models.Eagleford.findAll({
+      where: {
+        api14: 42051340170000
+      }
+    }).then(wellsinfo => {
+      res.json(wellsinfo);
+      console.log(wellsinfo);
+    });
+  } catch (error) {
+    console.log(error);
+  }
 });
 
 // Search By Field
