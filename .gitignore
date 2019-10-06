@@ -64,4 +64,4 @@ node_modules/
 # dotenv environment variables file
 .env
 config/dev.js
-config/config.js
+config/config.json
