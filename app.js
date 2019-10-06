@@ -17,6 +17,7 @@ app.get("/oil-well", (req, res) => {
     }
   }).then(wellsinfo => {
     res.json(wellsinfo);
+    console.log(wellsinfo);
   });
 });
 

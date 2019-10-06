@@ -51,11 +51,6 @@ module.exports = {
           parameters: structjson.jsonToStructProto(parameters),
           languageCode: config.languageCode
         }
-      },
-      queryParams: {
-        payload: {
-          data: parameters
-        }
       }
     };
     // Send request and log result

@@ -8,7 +8,7 @@ module.exports = app => {
     mapWells = async agent => {
       const wells = await models.Eagleford.findAll({
         where: {
-          wellName: "STANLEY RANCH"
+          diBasin: "STANLEY RANCH"
         }
       });
 
