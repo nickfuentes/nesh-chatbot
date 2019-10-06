@@ -13,6 +13,9 @@ module.exports = app => {
         }
       });
 
+      console.log(agent.parameters.Basin);
+      console.log(wells);
+
       const wellLocations = wells.map(well => {
         let wellLocation = {
           long: well.dataValues.surfaceHoleLongitude,
@@ -25,7 +28,7 @@ module.exports = app => {
       const responseText = `Here are the well locations for ${utils.titleCase(
         agent.parameters.Basin
       )}`;
-      const wellsText = `${wellLocations}`;
+      const wellsText = `${JSON.stringify(wellLocations)}`;
       agent.add(wellsText);
       agent.add(responseText);
       console.log(utils.titleCase(agent.parameters.Basin));
