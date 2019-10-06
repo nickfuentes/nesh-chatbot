@@ -35,9 +35,13 @@ module.exports = {
       }
     };
     // Send request and log result
-    let responses = await sessionClient.detectIntent(request);
-    responses = await self.handleAction(responses);
-    return responses;
+    try {
+      let responses = await sessionClient.detectIntent(request);
+      responses = await self.handleAction(responses);
+      return responses;
+    } catch (error) {
+      console.log(error);
+    }
   },
 
   eventQuery: async (event, parameters = {}) => {
