@@ -64,6 +64,16 @@ app.get("/all-wells", async (req, res) => {
   }
 });
 
+// search top 10 cum BOE
+app.get("/max-boe", (req, res) => {
+  models.Eagleford.findAll({
+    limit: 10,
+    order: [['cumBoe', 'DESC NULLS LAST']]
+  }).then(wellsinfo => {
+    res.json(wellsinfo)
+  })
+})
+
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`Nesh Chatbot server is running on port ${PORT}...`);
