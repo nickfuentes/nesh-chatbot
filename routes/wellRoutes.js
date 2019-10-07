@@ -47,7 +47,7 @@ module.exports = app => {
 
   app.get("/all-wells", async (req, res) => {
     try {
-      const wellsinfo = models.Eagleford.findAll({
+      const wellsinfo = await models.Eagleford.findAll({
         limit: 10
       });
       res.json(wellsinfo);

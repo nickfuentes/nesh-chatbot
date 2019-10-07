@@ -10,7 +10,7 @@ const Message = props => {
             <div className="col s2">
               <a
                 style={{ color: "black" }}
-                class="btn-floating btn-large waves-effect waves-light yellow"
+                className="btn-floating btn-large waves-effect waves-light yellow"
               >
                 {props.speaks}
               </a>
