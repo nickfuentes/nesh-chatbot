@@ -29,7 +29,7 @@ module.exports = app => {
         const responseText = `Here are the well locations for ${utils.titleCase(
           agent.parameters.Basin
         )}`;
-        const wellsText = `${JSON.stringify(wellLocations)}`;
+        const wellsText = `${wellLocations}`;
         agent.add(wellsText);
         agent.add(responseText);
         console.log(utils.titleCase(agent.parameters.Basin));
