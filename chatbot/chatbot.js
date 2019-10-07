@@ -63,6 +63,7 @@ module.exports = {
     return responses;
   },
 
+  // no actions created yet. Once they are created they will go here.
   handleAction: responses => {
     return responses;
   }
