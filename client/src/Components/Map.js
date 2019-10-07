@@ -21,7 +21,7 @@ const WellsMap = () => {
 
   const [wellsinfo, setWellsInfo] = useState([])
   const fetchWells = () => {
-    fetch("http://localhost:3001/all-wells")
+    fetch("http://localhost:5000/all-wells")
       .then(response => response.json())
       .then(json => {
         setWellsInfo(json)
