@@ -1,10 +1,10 @@
-const { WebhookClient } = require("dialogflow-fulfillment");
-const models = require("../models");
-const utils = require("../utils/helpers");
+const { WebhookClient } = require("dialogflow-fulfillment")
+const models = require("../models")
+const utils = require("../utils/helpers")
 
 module.exports = app => {
   app.post("/", async (req, res) => {
-    const agent = new WebhookClient({ request: req, response: res });
+    const agent = new WebhookClient({ request: req, response: res })
 
     mapWells = async agent => {
       try {
@@ -12,40 +12,41 @@ module.exports = app => {
           where: {
             diBasin: agent.parameters.Basin
           }
-        });
+        })
 
-        console.log(agent.parameters.Basin);
-        console.log(wells);
+        console.log(agent.parameters.Basin)
+        console.log(wells)
 
         const wellLocations = wells.map(well => {
           let wellLocation = {
             long: well.dataValues.surfaceHoleLongitude,
             lat: well.dataValues.surfaceHoleLatitude
-          };
-          return wellLocation;
-        });
+          }
+          return wellLocation
+        })
 
-        console.log(wellLocations);
+        console.log(wellLocations)
         const responseText = `Here are the well locations for ${utils.titleCase(
           agent.parameters.Basin
-        )}`;
-        const wellsText = `${JSON.stringify(wellLocations)}`;
-        agent.add(wellsText);
-        agent.add(responseText);
-        console.log(utils.titleCase(agent.parameters.Basin));
-      } catch (error) {
-        console.log(error);
-      }
-    };
+        )}`
+        const wellsText = `${JSON.stringify(wellLocations)}`
 
-    function fallback(agent) {
-      agent.add(`Webhook I didn't understand`);
-      agent.add(`Webhook I'm sorry, can you try again?`);
+        agent.add(wellsText)
+        agent.add(responseText)
+        console.log(utils.titleCase(agent.parameters.Basin))
+      } catch (error) {
+        console.log(error)
+      }
     }
 
-    let intentMap = new Map();
-    intentMap.set("Map Wells", mapWells);
-    intentMap.set("Default Fallback Intent", fallback);
-    agent.handleRequest(intentMap);
-  });
-};
+    function fallback(agent) {
+      agent.add(`Webhook I didn't understand`)
+      agent.add(`Webhook I'm sorry, can you try again?`)
+    }
+
+    let intentMap = new Map()
+    intentMap.set("Map Wells", mapWells)
+    intentMap.set("Default Fallback Intent", fallback)
+    agent.handleRequest(intentMap)
+  })
+}
