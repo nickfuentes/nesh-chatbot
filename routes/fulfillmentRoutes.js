@@ -28,12 +28,20 @@ module.exports = app => {
         console.log(wellLocations)
         const responseText = `Here are the well locations for ${utils.titleCase(
           agent.parameters.Basin
+<<<<<<< HEAD
         )}`
         const wellsText = `${JSON.stringify(wellLocations)}`
 
         agent.add(wellsText)
         agent.add(responseText)
         console.log(utils.titleCase(agent.parameters.Basin))
+=======
+        )}`;
+        const wellsText = `${wellLocations}`;
+        agent.add(wellsText);
+        agent.add(responseText);
+        console.log(utils.titleCase(agent.parameters.Basin));
+>>>>>>> ab8453eef69e2049266b5c5630dc05cdbd037f9a
       } catch (error) {
         console.log(error)
       }
