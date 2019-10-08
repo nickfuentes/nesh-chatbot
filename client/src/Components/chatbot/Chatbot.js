@@ -193,7 +193,7 @@ class Chatbot extends Component {
               }}
               className="nav-wrapper"
             >
-              <a href="/" className="brand-logo">
+              <a style={{ marginLeft: "10px" }} href="/" className="brand-logo">
                 I'm Nesh
               </a>
               <ul id="nav-mobile" className="right hide-on-med-and-down">

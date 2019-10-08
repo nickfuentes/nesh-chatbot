@@ -11,7 +11,7 @@ const Header = () => {
         <Link to={"/"} className="brand-logo left">
           <img
             className="responsive-img"
-            style={{ width: "120px" }}
+            style={{ width: "120px", marginLeft: "10px", marginTop: "8px" }}
             src="https://hellonesh.io/static/images/nesh.png"
           ></img>
         </Link>
