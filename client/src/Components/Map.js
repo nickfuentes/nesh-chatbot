@@ -35,7 +35,7 @@ const WellsMap = () => {
   const [center, setCenter] = useState({ lat: 29.7954, lng: -95.5698 })
   const [zoom, setZoom] = useState(11)
   return (
-    <div style={{ height: "100vh", width: "100%" }}>
+    <div style={{ height: "92vh", width: "100%" }}>
       <Map
         bootstrapURLKeys={{ key: api_key }}
         defaultCenter={center}

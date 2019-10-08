@@ -5,8 +5,8 @@ import Map from "../Map"
 const Shop = () => {
   return (
     <div>
-      <h2>Map Or Bar Graph</h2>
-      <ItemList />
+      {/* <h2>Map Or Bar Graph</h2>
+      <ItemList /> */}
       <Map />
     </div>
   )
