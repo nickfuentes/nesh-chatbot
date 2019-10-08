@@ -141,7 +141,8 @@ class Chatbot extends Component {
               minHeight: 388,
               maxHeight: 388,
               width: "100%",
-              overflow: "auto"
+              overflow: "auto",
+              backgroundColor: "#FFFFFF"
             }}
           >
             {this.renderMessages(this.state.messages)}
@@ -158,7 +159,8 @@ class Chatbot extends Component {
                 margin: 0,
                 paddingLeft: "1%",
                 paddingRight: "1%",
-                width: "98%"
+                width: "98%",
+                backgroundColor: "#FFFFFF"
               }}
               ref={input => {
                 this.talkInput = input
