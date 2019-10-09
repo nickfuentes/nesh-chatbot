@@ -1,11 +1,11 @@
-import React from "react"
+import React from "react";
 
 const Landing = () => {
   return (
     <div style={{ textAlign: "center" }}>
-      <h1>Selling You Great Stuff!</h1>
+      <h1>Nesh!</h1>
     </div>
-  )
-}
+  );
+};
 
-export default Landing
+export default Landing;
