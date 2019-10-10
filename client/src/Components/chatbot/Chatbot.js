@@ -42,7 +42,7 @@ class Chatbot extends Component {
       };
       return coordinate;
     });
-    //push
+
     console.log(locations);
 
     for (let msg of res.data[0].queryResult.fulfillmentMessages) {
