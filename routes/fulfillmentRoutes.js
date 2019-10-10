@@ -1,7 +1,6 @@
 const { WebhookClient, Payload } = require("dialogflow-fulfillment");
 const models = require("../models");
 const utils = require("../utils/helpers");
-const { Response } = require("node-fetch");
 
 module.exports = app => {
   app.post("/", async (req, res) => {
@@ -27,7 +26,7 @@ module.exports = app => {
           agent.parameters.Basin
         )}`;
 
-        let payload = new Payload("PLATFORM_UNSPECIFIED", {});
+        const payload = new Payload("PLATFORM_UNSPECIFIED", {});
         const pay = payload.setPayload(wellLocations);
         agent.add(pay);
         agent.add(responseText);

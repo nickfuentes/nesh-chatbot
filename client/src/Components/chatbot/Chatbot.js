@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import axios from "axios/index";
-import structjson from "structjson";
 
 import Message from "./Message";
 
@@ -24,7 +23,6 @@ class Chatbot extends Component {
       speaks: "user",
       msg: {
         text: {
-          // text: JSON.parse(text)
           text: text
         }
       }
@@ -34,32 +32,21 @@ class Chatbot extends Component {
 
     const res = await axios.post("/api/df_text_query", { text });
 
-    console.log(res);
+    const cords =
+      res.data[0].queryResult.webhookPayload.fields.null.listValue.values;
+
+    const locations = cords.map(cord => {
+      let coordinate = {
+        lat: cord.structValue.fields.lat.numberValue,
+        long: cord.structValue.fields.long.numberValue
+      };
+      return coordinate;
+    });
+
+    console.log(locations);
+
     for (let msg of res.data[0].queryResult.fulfillmentMessages) {
-      // let locations = [];
-      // let mess = msg.text.text[0];
-      // console.log(mess);
-      // // const objs = msg.text.text.map(msg => msg.replace(/['"]+/g, ""));
-      // // console.log(typeof mess);
-
-      // let test = {};
-      // const objs = mess.map(
-
-      //   msg => {
-      //     test[] =
-      //     console.log(test);
-      //     msg.replace(/['"]+/g, "")
-
-      //   }
-      //   // locations.push(msg)
-      // );
-
-      // console.log(objs);
-      // console.log(JSON.stringify(objs));
-      // let message = structjson.structProtoToJson(msg.text.text[0]);
-      // console.log(message);
       console.log(msg);
-
       says = {
         speaks: "nesh",
         msg: msg
