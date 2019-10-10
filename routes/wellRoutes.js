@@ -45,6 +45,16 @@ module.exports = app => {
     }
   });
 
+  // search top 10 cum BOE
+  app.get("/max-boe", (req, res) => {
+    models.Eagleford.findAll({
+      limit: 10,
+      order: [['cumBoe', 'DESC NULLS LAST']]
+    }).then(wellsinfo => {
+      res.json(wellsinfo)
+    })
+  })
+
   app.get("/all-wells", async (req, res) => {
     try {
       const wellsinfo = await models.Eagleford.findAll({
