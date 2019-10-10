@@ -11,17 +11,17 @@ function TopTenCumBOE() {
     },[])
  
 
-    const fetchWells = () => {
-        fetch("http://localhost:3001/max-boe")
-            .then(response => response.json())
-            .then(wells => {
-                console.log(wells)
-                setWells(wells)
-            }).catch(error => {
-                console.log(error)
-            })
+    // const fetchWells = () => {
+    //     fetch("http://localhost:3001/max-boe")
+    //         .then(response => response.json())
+    //         .then(wells => {
+    //             console.log(wells)
+    //             setWells(wells)
+    //         }).catch(error => {
+    //             console.log(error)
+    //         })
             
-    }
+    // }
 
     const formatYaxis = (number) => {
         return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
