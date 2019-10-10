@@ -22,7 +22,7 @@ module.exports = app => {
           };
           return wellLocation;
         });
-
+        
         const responseText = `Here are the well locations for ${utils.titleCase(
           agent.parameters.Basin
         )}`;
@@ -37,6 +37,33 @@ module.exports = app => {
       }
     };
 
+    cumBOE = async agent => {
+      try {
+        const wells = await models.Eagleford.findAll({
+          limit: 10,
+          order: [['cumBoe', 'DESC NULLS LAST']]
+        });
+
+        const wellBOEs = wells.map(well => {
+          let wellBOE = {
+            wellName: well.dataValues.wellName,
+            cumBoe: well.dataValues.cumBoe
+          };
+          return wellBOE;
+        });
+
+        const responseText = "Here are the wells with the highest cumulative BOE"
+
+        let payload = new Payload("PLATFORM_UNSPECIFIED",{});
+        const pay = payload.setPayload(wellBOEs);
+        agent.add(pay);
+        agent.add(responseText);
+        console.log(payload);
+      } catch (error) {
+        console.log(error)
+      }
+    };
+
     function fallback(agent) {
       agent.add(`Webhook I didn't understand`);
       agent.add(`Webhook I'm sorry, can you try again?`);
@@ -44,6 +71,7 @@ module.exports = app => {
 
     let intentMap = new Map();
     intentMap.set("Map Wells", mapWells);
+    intentMap.set("Cumulative BOE", cumBOE);
     intentMap.set("Default Fallback Intent", fallback);
     agent.handleRequest(intentMap);
   });
