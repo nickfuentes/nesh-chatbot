@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import axios from "axios/index";
-import Map from 'google-map-react'
-import Marker from '../Marker'
-import { connect } from 'react-redux'
-import { api_key } from "../../config"
+import Map from "google-map-react";
+import Marker from "../Marker";
+import { connect } from "react-redux";
+import { api_key } from "../../config";
+import { df_text_query } from "../../actions/queryActions";
 
 import Message from "./Message";
 
@@ -22,83 +23,82 @@ class Chatbot extends Component {
     };
   }
 
-  async df_text_query(text) {
-    let says = {
-      speaks: "user",
-      msg: {
-        text: {
-          text: text
-        }
-      }
-    };
+  // async df_text_query(text) {
+  //   let says = {
+  //     speaks: "user",
+  //     msg: {
+  //       text: {
+  //         text: text
+  //       }
+  //     }
+  //   };
 
-    this.setState({ messages: [...this.state.messages, says] });
+  //   this.setState({ messages: [...this.state.messages, says] });
 
-    const res = await axios.post("/api/df_text_query", { text });
-    console.log(res)
+  //   const res = await axios.post("/api/df_text_query", { text });
+  //   console.log(res);
 
-    if (res.data[0].queryResult.webhookPayload && res.data[0].queryResult.intent.displayName == "Map Wells") {
-      const cords =
-      res.data[0].queryResult.webhookPayload.fields.null.listValue.values;
-      const locations = cords.map(cord => {
-        let coordinate = {
-          lat: cord.structValue.fields.lat.numberValue,
-          long: cord.structValue.fields.long.numberValue
-        }
-        .then (
-          const mapDispatchToProps = (dispath) => {
-            return {
-              
-            }
-          }
-        )
-        return coordinate;
-      });
-      
-      console.log(locations)
-      console.log("MAP the WELLS");
-    } else if (res.data[0].queryResult.webhookPayload && res.data[0].queryResult.intent.displayName == "Cumulative BOE") {
-        const wellData = res.data[0].queryResult.webhookPayload.fields.null.listValue.values;
-        const graphData= wellData.map(data => {
-          let cumData = {
-            wellName: data.structValue.fields.wellName.stringValue,
-            cumBoe: data.structValue.fields.cumBoe.numberValue
-          };
-          return cumData
-        })
-        console.log(graphData)
-        console.log("Cumulative BOE is the intent")
-    } else {
-      console.log("Other")
-    }
-    
+  //   if (
+  //     res.data[0].queryResult.webhookPayload &&
+  //     res.data[0].queryResult.intent.displayName == "Map Wells"
+  //   ) {
+  //     const cords =
+  //       res.data[0].queryResult.webhookPayload.fields.null.listValue.values;
+  //     const locations = cords.map(cord => {
+  //       let coordinate = {
+  //         lat: cord.structValue.fields.lat.numberValue,
+  //         long: cord.structValue.fields.long.numberValue
+  //       };
+  //       return coordinate;
+  //     });
 
-    for (let msg of res.data[0].queryResult.fulfillmentMessages) {
-      console.log(msg);
-      says = {
-        speaks: "nesh",
-        msg: msg
-      };
-      this.setState({ messages: [...this.state.messages, says] });
-    }
-  }
+  //     console.log(locations);
+  //     console.log("MAP the WELLS");
+  //   } else if (
+  //     res.data[0].queryResult.webhookPayload &&
+  //     res.data[0].queryResult.intent.displayName == "Cumulative BOE"
+  //   ) {
+  //     const wellData =
+  //       res.data[0].queryResult.webhookPayload.fields.null.listValue.values;
+  //     const graphData = wellData.map(data => {
+  //       let cumData = {
+  //         wellName: data.structValue.fields.wellName.stringValue,
+  //         cumBoe: data.structValue.fields.cumBoe.numberValue
+  //       };
+  //       return cumData;
+  //     });
+  //     console.log(graphData);
+  //     console.log("Cumulative BOE is the intent");
+  //   } else {
+  //     console.log("Other");
+  //   }
 
-  async df_event_query(event) {
-    const res = await axios.post("/api/df_event_query", { event });
+  //   for (let msg of res.data[0].queryResult.fulfillmentMessages) {
+  //     console.log(msg);
+  //     says = {
+  //       speaks: "nesh",
+  //       msg: msg
+  //     };
+  //     this.setState({ messages: [...this.state.messages, says] });
+  //   }
+  // }
 
-    for (let msg of res.data[0].queryResult.fulfillmentMessages) {
-      let says = {
-        speaks: "nesh",
-        msg: msg
-      };
+  // async df_event_query(event) {
+  //   const res = await axios.post("/api/df_event_query", { event });
 
-      this.setState({ messages: [...this.state.messages, says] });
-    }
-  }
+  //   for (let msg of res.data[0].queryResult.fulfillmentMessages) {
+  //     let says = {
+  //       speaks: "nesh",
+  //       msg: msg
+  //     };
+
+  //     this.setState({ messages: [...this.state.messages, says] });
+  //   }
+  // }
 
   componentDidMount() {
     // this.df_event_query("Welcome")
-    this.df_event_query("Welcome");
+    // this.df_event_query("Welcome");
   }
 
   componentDidUpdate() {
@@ -138,7 +138,7 @@ class Chatbot extends Component {
 
   _handleInputKeyPress(e) {
     if (e.key === "Enter") {
-      this.df_text_query(e.target.value);
+      this.props.df_text_query(e.target.value);
       e.target.value = "";
     }
   }
@@ -240,4 +240,19 @@ class Chatbot extends Component {
   }
 }
 
-export default Chatbot;
+const mapDispatchToProps = dispatch => {
+  return {
+    df_text_query: text => dispatch(df_text_query(text))
+  };
+};
+
+const mapStateToProps = state => {
+  return {
+    text: state.query.text
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Chatbot);

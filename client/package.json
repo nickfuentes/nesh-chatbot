@@ -13,6 +13,7 @@
     "react-scripts": "^3.2.0",
     "recharts": "^1.7.1",
     "redux": "^4.0.4",
+    "redux-thunk": "^2.3.0",
     "structjson": "^1.0.1"
   },
   "scripts": {
