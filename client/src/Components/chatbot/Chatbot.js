@@ -1,21 +1,22 @@
-import React, { Component } from "react"
-import axios from "axios/index"
+import React, { Component } from "react";
+import axios from "axios/index";
+import structjson from "structjson";
 
-import Message from "./Message"
+import Message from "./Message";
 
 class Chatbot extends Component {
-  messagesEnd
+  messagesEnd;
   constructor(props) {
-    super(props)
+    super(props);
 
-    this._handleInputKeyPress = this._handleInputKeyPress.bind(this)
-    this.hide = this.hide.bind(this)
-    this.show = this.show.bind(this)
+    this._handleInputKeyPress = this._handleInputKeyPress.bind(this);
+    this.hide = this.hide.bind(this);
+    this.show = this.show.bind(this);
 
     this.state = {
       messages: [],
       showBot: true
-    }
+    };
   }
 
   async df_text_query(text) {
@@ -23,59 +24,85 @@ class Chatbot extends Component {
       speaks: "user",
       msg: {
         text: {
+          // text: JSON.parse(text)
           text: text
         }
       }
-    }
+    };
 
-    this.setState({ messages: [...this.state.messages, says] })
+    this.setState({ messages: [...this.state.messages, says] });
 
-    const res = await axios.post("/api/df_text_query", { text })
+    const res = await axios.post("/api/df_text_query", { text });
 
+    console.log(res);
     for (let msg of res.data[0].queryResult.fulfillmentMessages) {
+      // let locations = [];
+      // let mess = msg.text.text[0];
+      // console.log(mess);
+      // // const objs = msg.text.text.map(msg => msg.replace(/['"]+/g, ""));
+      // // console.log(typeof mess);
+
+      // let test = {};
+      // const objs = mess.map(
+
+      //   msg => {
+      //     test[] =
+      //     console.log(test);
+      //     msg.replace(/['"]+/g, "")
+
+      //   }
+      //   // locations.push(msg)
+      // );
+
+      // console.log(objs);
+      // console.log(JSON.stringify(objs));
+      // let message = structjson.structProtoToJson(msg.text.text[0]);
+      // console.log(message);
+      console.log(msg);
+
       says = {
         speaks: "nesh",
         msg: msg
-      }
-      this.setState({ messages: [...this.state.messages, says] })
+      };
+      this.setState({ messages: [...this.state.messages, says] });
     }
   }
 
   async df_event_query(event) {
-    const res = await axios.post("/api/df_event_query", { event })
+    const res = await axios.post("/api/df_event_query", { event });
 
     for (let msg of res.data[0].queryResult.fulfillmentMessages) {
       let says = {
         speaks: "nesh",
         msg: msg
-      }
+      };
 
-      this.setState({ messages: [...this.state.messages, says] })
+      this.setState({ messages: [...this.state.messages, says] });
     }
   }
 
   componentDidMount() {
     // this.df_event_query("Welcome")
-    this.df_event_query("Welcome")
+    this.df_event_query("Welcome");
   }
 
   componentDidUpdate() {
-    this.messagesEnd.scrollIntoView({ behavior: "smooth" })
+    this.messagesEnd.scrollIntoView({ behavior: "smooth" });
     if (this.talkInput) {
-      this.talkInput.focus()
+      this.talkInput.focus();
     }
   }
 
   show(event) {
-    event.preventDefault()
-    event.stopPropagation()
-    this.setState({ showBot: true })
+    event.preventDefault();
+    event.stopPropagation();
+    this.setState({ showBot: true });
   }
 
   hide(event) {
-    event.preventDefault()
-    event.stopPropagation()
-    this.setState({ showBot: false })
+    event.preventDefault();
+    event.stopPropagation();
+    this.setState({ showBot: false });
   }
 
   renderMessages(stateMessages) {
@@ -87,17 +114,17 @@ class Chatbot extends Component {
             speaks={message.speaks}
             text={message.msg.text.text}
           />
-        )
-      })
+        );
+      });
     } else {
-      return null
+      return null;
     }
   }
 
   _handleInputKeyPress(e) {
     if (e.key === "Enter") {
-      this.df_text_query(e.target.value)
-      e.target.value = ""
+      this.df_text_query(e.target.value);
+      e.target.value = "";
     }
   }
 
@@ -148,7 +175,7 @@ class Chatbot extends Component {
             {this.renderMessages(this.state.messages)}
             <div
               ref={el => {
-                this.messagesEnd = el
+                this.messagesEnd = el;
               }}
               style={{ float: "left", clear: "both" }}
             ></div>
@@ -163,7 +190,7 @@ class Chatbot extends Component {
                 backgroundColor: "#FFFFFF"
               }}
               ref={input => {
-                this.talkInput = input
+                this.talkInput = input;
               }}
               placeholder="type a message:"
               onKeyPress={this._handleInputKeyPress}
@@ -172,7 +199,7 @@ class Chatbot extends Component {
             />
           </div>
         </div>
-      )
+      );
     } else {
       return (
         <div
@@ -207,14 +234,14 @@ class Chatbot extends Component {
           </nav>
           <div
             ref={el => {
-              this.messagesEnd = el
+              this.messagesEnd = el;
             }}
             style={{ float: "left", clear: "both" }}
           ></div>
         </div>
-      )
+      );
     }
   }
 }
 
-export default Chatbot
+export default Chatbot;
