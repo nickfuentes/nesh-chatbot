@@ -20,3 +20,29 @@
 .App-link {
   color: #09d3ac;
 }
+
+.main {
+  display: flex;
+}
+
+.view-details {
+  width: 70%;
+}
+
+.chat-view {
+  flex: 1;
+  min-height: 100vh;
+  /* max-height: 470px; */
+  width: 400px;
+  position: "absolute";
+  bottom: 0;
+  right: 0;
+}
+
+#chatbot {
+  min-height: 90vh;
+  max-height: 87vh;
+  width: "100%";
+  overflow: "auto";
+  background-color: #ffffff;
+}

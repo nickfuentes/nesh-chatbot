@@ -118,17 +118,7 @@ class Chatbot extends Component {
   render() {
     if (this.state.showBot) {
       return (
-        <div
-          style={{
-            minHeight: 500,
-            maxHeight: 470,
-            width: 400,
-            position: "absolute",
-            bottom: 0,
-            right: 0,
-            border: "1px solid lightgray"
-          }}
-        >
+        <div className="chat-view">
           <nav>
             <div
               style={{
@@ -149,16 +139,7 @@ class Chatbot extends Component {
             </div>
           </nav>
 
-          <div
-            id="chatbot"
-            style={{
-              minHeight: 388,
-              maxHeight: 388,
-              width: "100%",
-              overflow: "auto",
-              backgroundColor: "#FFFFFF"
-            }}
-          >
+          <div id="chatbot">
             {this.renderMessages(this.state.messages)}
             <div
               ref={el => {
@@ -166,24 +147,24 @@ class Chatbot extends Component {
               }}
               style={{ float: "left", clear: "both" }}
             ></div>
-          </div>
-          <div className=" col s12">
-            <input
-              style={{
-                margin: 0,
-                paddingLeft: "1%",
-                paddingRight: "1%",
-                width: "98%",
-                backgroundColor: "#FFFFFF"
-              }}
-              ref={input => {
-                this.talkInput = input;
-              }}
-              placeholder="type a message:"
-              onKeyPress={this._handleInputKeyPress}
-              id="user_says"
-              type="text"
-            />
+            <div className=" col s12">
+              <input
+                style={{
+                  margin: 0,
+                  paddingLeft: "1%",
+                  paddingRight: "1%",
+                  width: "98%",
+                  backgroundColor: "#FFFFFF"
+                }}
+                ref={input => {
+                  this.talkInput = input;
+                }}
+                placeholder="type a message:"
+                onKeyPress={this._handleInputKeyPress}
+                id="user_says"
+                type="text"
+              />
+            </div>
           </div>
         </div>
       );
