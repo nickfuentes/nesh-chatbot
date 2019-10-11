@@ -20,19 +20,6 @@ const WellsMap = props => {
     };
   };
 
-  // const [wellsinfo, setWellsInfo] = useState([])
-  // const fetchWells = () => {
-  //   fetch("http://localhost:5000/all-wells")
-  //     .then(response => response.json())
-  //     .then(json => {
-  //       setWellsInfo(json)
-  //     })
-  // }
-
-  // useEffect(() => {
-  //   fetchWells()
-  // }, [])
-
   const [center, setCenter] = useState({ lat: 29.7954, lng: -95.5698 });
   const [zoom, setZoom] = useState(4);
   return (
