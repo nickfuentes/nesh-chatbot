@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import axios from "axios/index";
-import Map from "google-map-react";
-import Marker from "../Marker";
+// import axios from "axios/index";
+// import Map from "google-map-react";
+// import Marker from "../Marker";
 import { connect } from "react-redux";
-import { api_key } from "../../config";
+// import { api_key } from "../../config";
 import { df_text_query } from "../../actions/queryActions";
 
 import Message from "./Message";
@@ -33,7 +33,7 @@ class Chatbot extends Component {
   //     }
   //   };
 
-  //   this.setState({ messages: [...this.state.messages, says] });
+  // this.setState({ messages: [...this.state.messages, says] });
 
   //   const res = await axios.post("/api/df_text_query", { text });
   //   console.log(res);
@@ -122,6 +122,7 @@ class Chatbot extends Component {
 
   renderMessages(stateMessages) {
     if (stateMessages) {
+      console.log(this.props.queryMessages);
       return stateMessages.map((message, i) => {
         return (
           <Message
@@ -138,12 +139,13 @@ class Chatbot extends Component {
 
   _handleInputKeyPress(e) {
     if (e.key === "Enter") {
-      this.props.df_text_query(e.target.value);
+      this.props.df_text_query(this.props.queryMessages, e.target.value);
       e.target.value = "";
     }
   }
 
   render() {
+    // console.log(this.props);
     if (this.state.showBot) {
       return (
         <div className="chat-view">
@@ -168,7 +170,8 @@ class Chatbot extends Component {
           </nav>
 
           <div id="chatbot">
-            {this.renderMessages(this.state.messages)}
+            {this.renderMessages(this.props.queryMessages)}
+
             <div
               ref={el => {
                 this.messagesEnd = el;
@@ -242,13 +245,15 @@ class Chatbot extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    df_text_query: text => dispatch(df_text_query(text))
+    df_text_query: (queryMessages, text) =>
+      dispatch(df_text_query(queryMessages, text))
   };
 };
 
 const mapStateToProps = state => {
   return {
-    text: state.query.text
+    text: state.query.text,
+    queryMessages: state.query.messages
   };
 };
 

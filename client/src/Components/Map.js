@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react"
-import Map from "google-map-react"
-import Marker from "./Marker"
-import { api_key } from "../config"
+import React, { useState } from "react";
+// import Map from "google-map-react";
+// import Marker from "./Marker";
+// import { api_key } from "../config";
 
 const WellsMap = () => {
   const getMapOptions = ({ maps: any }) => {
@@ -16,27 +16,27 @@ const WellsMap = () => {
           stylers: [{ visibility: "on" }]
         }
       ]
-    }
-  }
+    };
+  };
 
-  const [wellsinfo, setWellsInfo] = useState([])
-  const fetchWells = () => {
-    fetch("http://localhost:5000/all-wells")
-      .then(response => response.json())
-      .then(json => {
-        setWellsInfo(json)
-      })
-  }
+  // const [wellsinfo, setWellsInfo] = useState([])
+  // const fetchWells = () => {
+  //   fetch("http://localhost:5000/all-wells")
+  //     .then(response => response.json())
+  //     .then(json => {
+  //       setWellsInfo(json)
+  //     })
+  // }
 
-  useEffect(() => {
-    fetchWells()
-  }, [])
+  // useEffect(() => {
+  //   fetchWells()
+  // }, [])
 
-  const [center, setCenter] = useState({ lat: 29.7954, lng: -95.5698 })
-  const [zoom, setZoom] = useState(11)
+  const [center, setCenter] = useState({ lat: 29.7954, lng: -95.5698 });
+  const [zoom, setZoom] = useState(11);
   return (
     <div style={{ height: "92vh", width: "100%" }}>
-      <Map
+      {/* <Map
         bootstrapURLKeys={{ key: api_key }}
         defaultCenter={center}
         defaultZoom={zoom}
@@ -50,11 +50,11 @@ const WellsMap = () => {
               name="My Marker"
               color="blue"
             />
-          )
+          );
         })}
-      </Map>
+      </Map> */}
     </div>
-  )
-}
+  );
+};
 
-export default WellsMap
+export default WellsMap;
