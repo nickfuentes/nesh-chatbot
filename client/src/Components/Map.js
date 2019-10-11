@@ -2,8 +2,9 @@ import React, { useState, useEffect } from "react"
 import Map from "google-map-react"
 import Marker from "./Marker"
 import { api_key } from "../config"
+import { connect } from "react-redux"
 
-const WellsMap = () => {
+const WellsMap = props => {
   const getMapOptions = ({ maps: any }) => {
     return {
       disableDefaultUI: true,
@@ -19,21 +20,9 @@ const WellsMap = () => {
     }
   }
 
-  const [wellsinfo, setWellsInfo] = useState([])
-  const fetchWells = () => {
-    fetch("http://localhost:5000/all-wells")
-      .then(response => response.json())
-      .then(json => {
-        setWellsInfo(json)
-      })
-  }
+  const [center, setCenter] = useState({ lat: 32.7954, lng: -92.5698 })
+  const [zoom, setZoom] = useState(8)
 
-  useEffect(() => {
-    fetchWells()
-  }, [])
-
-  const [center, setCenter] = useState({ lat: 29.7954, lng: -95.5698 })
-  const [zoom, setZoom] = useState(11)
   return (
     <div style={{ height: "92vh", width: "100%" }}>
       <Map
@@ -42,11 +31,12 @@ const WellsMap = () => {
         defaultZoom={zoom}
         options={getMapOptions}
       >
-        {wellsinfo.map(well => {
+        {props.wellsInfo.map(well => {
           return (
             <Marker
-              lat={well.surfaceHoleLatitude}
-              lng={well.surfaceHoleLongitude}
+              key={well.lat}
+              lat={well.lat}
+              lng={well.long}
               name="My Marker"
               color="blue"
             />
@@ -57,4 +47,10 @@ const WellsMap = () => {
   )
 }
 
-export default WellsMap
+const mapStateToProps = state => {
+  return {
+    wellsInfo: state.query.wellsInfo
+  }
+}
+
+export default connect(mapStateToProps)(WellsMap)
