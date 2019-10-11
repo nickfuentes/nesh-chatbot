@@ -1,7 +1,8 @@
 const initialState = {
   text: "",
   wellsInfo: [],
-  messages: []
+  messages: [],
+  compType: ""
 };
 
 export default function(state = initialState, action) {
@@ -10,7 +11,8 @@ export default function(state = initialState, action) {
       return {
         ...state,
         wellsInfo: action.payload.wellsInfo,
-        messages: action.payload.messages
+        messages: action.payload.messages,
+        compType: "Map"
       };
     // case "DF_TEXT_QUERY":
     //   return {
