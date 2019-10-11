@@ -1,9 +1,10 @@
 import React from "react";
+import Map from '../Map';
 
 const Landing = () => {
   return (
-    <div style={{ textAlign: "center" }}>
-      <h1></h1>
+    <div>
+      <Map/>
     </div>
   );
 };

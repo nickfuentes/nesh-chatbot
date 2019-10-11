@@ -16,14 +16,6 @@ const Header = () => {
             alt="nesh"
           ></img>
         </Link>
-        <ul id="nav-mobile" className="right hide-on-med-and-down">
-          <li>
-            <Link to={"/shop"}>Holder</Link>
-          </li>
-          <li>
-            <Link to={"/about"}>Holder</Link>
-          </li>
-        </ul>
       </div>
     </nav>
   );
