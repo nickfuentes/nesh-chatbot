@@ -180,19 +180,11 @@ class Chatbot extends Component {
             ></div>
             <div className=" col s12">
               <input
-                style={{
-                  margin: 0,
-                  paddingLeft: "1%",
-                  paddingRight: "1%",
-                  width: "98%",
-                  backgroundColor: "#FFFFFF",
-                  borderRadius: 3,
-                  height: 40
-                }}
+                className="chat-input"
                 ref={input => {
                   this.talkInput = input;
                 }}
-                placeholder="type a message:"
+                placeholder="Ask Nesh..."
                 onKeyPress={this._handleInputKeyPress}
                 id="user_says"
                 type="text"

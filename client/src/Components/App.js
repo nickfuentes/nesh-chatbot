@@ -12,7 +12,7 @@ const App = () => {
       <BrowserRouter>
         <div className="main">
           <div className="view-details">
-            <Header />
+            {/* <Header /> */}
             <Route exact path="/" component={Landing} />
           </div>
           <Chatbot />
