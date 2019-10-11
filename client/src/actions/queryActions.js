@@ -56,6 +56,23 @@ export const df_text_query = (messages, text) => {
           }
         });
         return locations;
+      } else {
+        for (let msg of res.data[0].queryResult.fulfillmentMessages) {
+          console.log(msg);
+          says = {
+            speaks: "nesh",
+            msg: msg
+          };
+          console.log(says);
+          queryMessages.push(says);
+        }
+
+        dispatch({
+          type: "GET_LAT_LONGS",
+          payload: {
+            messages: queryMessages
+          }
+        });
       }
     });
   };
