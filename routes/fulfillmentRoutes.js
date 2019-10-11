@@ -5,7 +5,6 @@ const { Response } = require("node-fetch");
 
 module.exports = app => {
   app.post("/", async (req, res) => {
-    console.log("hellooo")
     const agent = new WebhookClient({ request: req, response: res });
 
     mapWells = async agent => {
@@ -24,10 +23,15 @@ module.exports = app => {
           };
           return wellLocation;
         });
-        
-        const responseText = `Here are the well locations for ${utils.titleCase(
-          agent.parameters.Basin
-        )}`;
+
+        const responseText = agent.parameters.Basin
+          ? `Here's the well locations for ${utils.titleCase(
+              agent.parameters.Basin
+            )}`
+          : `Here's all the wells`;
+        console.log(responseText);
+
+        console.log(agent.parameters);
 
         let payload = new Payload("PLATFORM_UNSPECIFIED", {});
         const pay = payload.setPayload(wellLocations);
@@ -43,7 +47,7 @@ module.exports = app => {
       try {
         const wells = await models.Eagleford.findAll({
           limit: 10,
-          order: [['cumBoe', 'DESC NULLS LAST']]
+          order: [["cumBoe", "DESC NULLS LAST"]]
         });
 
         const wellBOEs = wells.map(well => {
@@ -54,15 +58,16 @@ module.exports = app => {
           return wellBOE;
         });
 
-        const responseText = "Here are the wells with the highest cumulative BOE"
+        const responseText =
+          "Here are the wells with the highest cumulative BOE";
 
-        let payload = new Payload("PLATFORM_UNSPECIFIED",{});
+        let payload = new Payload("PLATFORM_UNSPECIFIED", {});
         const pay = payload.setPayload(wellBOEs);
         agent.add(pay);
         agent.add(responseText);
         console.log(payload);
       } catch (error) {
-        console.log(error)
+        console.log(error);
       }
     };
 
