@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
-// import Map from "google-map-react";
-// import Marker from "./Marker";
-// import { api_key } from "../config";
+import Map from "google-map-react";
+import Marker from "./Marker";
+import { api_key } from "../config";
 
 const WellsMap = props => {
   const getMapOptions = ({ maps: any }) => {
@@ -37,7 +37,7 @@ const WellsMap = props => {
   const [zoom, setZoom] = useState(11);
   return (
     <div style={{ height: "92vh", width: "100%" }}>
-      {/* <Map
+      <Map
         bootstrapURLKeys={{ key: api_key }}
         defaultCenter={center}
         defaultZoom={zoom}
@@ -54,7 +54,7 @@ const WellsMap = props => {
             />
           );
         })}
-      </Map> */}
+      </Map>
     </div>
   );
 };
