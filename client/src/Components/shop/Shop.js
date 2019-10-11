@@ -1,6 +1,6 @@
-import React from "react"
-import ItemList from "./ItemList"
-import Map from "../Map"
+import React from "react";
+// import ItemList from "./ItemList"
+import Map from "../Map";
 
 const Shop = () => {
   return (
@@ -9,7 +9,7 @@ const Shop = () => {
       <ItemList /> */}
       <Map />
     </div>
-  )
-}
+  );
+};
 
-export default Shop
+export default Shop;

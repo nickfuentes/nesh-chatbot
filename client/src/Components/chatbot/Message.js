@@ -1,8 +1,6 @@
 import React from "react";
-import { SSL_OP_TLS_BLOCK_PADDING_BUG } from "constants";
 
 const Message = props => {
-  console.log(props);
   return (
     <div className="col s12 m8 offset-m2 offset-l3">
       <div className="card-panel grey lighten-5 z-depth-1">

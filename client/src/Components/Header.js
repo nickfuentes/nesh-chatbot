@@ -1,5 +1,5 @@
-import React from "react"
-import { Link } from "react-router-dom"
+import React from "react";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
@@ -13,6 +13,7 @@ const Header = () => {
             className="responsive-img"
             style={{ width: "120px", marginLeft: "10px", marginTop: "8px" }}
             src="https://hellonesh.io/static/images/nesh.png"
+            alt="nesh"
           ></img>
         </Link>
         <ul id="nav-mobile" className="right hide-on-med-and-down">
@@ -25,7 +26,7 @@ const Header = () => {
         </ul>
       </div>
     </nav>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;

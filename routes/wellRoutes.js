@@ -10,7 +10,6 @@ module.exports = app => {
         }
       });
       res.json(wellsinfo);
-      console.log(wellsinfo);
     } catch (error) {
       console.log(error);
     }
@@ -49,11 +48,11 @@ module.exports = app => {
   app.get("/max-boe", (req, res) => {
     models.Eagleford.findAll({
       limit: 10,
-      order: [['cumBoe', 'DESC NULLS LAST']]
+      order: [["cumBoe", "DESC NULLS LAST"]]
     }).then(wellsinfo => {
-      res.json(wellsinfo)
-    })
-  })
+      res.json(wellsinfo);
+    });
+  });
 
   app.get("/all-wells", async (req, res) => {
     try {

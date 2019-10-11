@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react"
-import Map from "google-map-react"
-import Marker from "./Marker"
-import { api_key } from "../config"
-import { connect } from "react-redux"
+import React, { useState } from "react";
+import { connect } from "react-redux";
+import Map from "google-map-react";
+import Marker from "./Marker";
+import { api_key } from "../config";
 
 const WellsMap = props => {
   const getMapOptions = ({ maps: any }) => {
@@ -17,12 +17,24 @@ const WellsMap = props => {
           stylers: [{ visibility: "on" }]
         }
       ]
-    }
-  }
+    };
+  };
 
-  const [center, setCenter] = useState({ lat: 32.7954, lng: -92.5698 })
-  const [zoom, setZoom] = useState(8)
+  // const [wellsinfo, setWellsInfo] = useState([])
+  // const fetchWells = () => {
+  //   fetch("http://localhost:5000/all-wells")
+  //     .then(response => response.json())
+  //     .then(json => {
+  //       setWellsInfo(json)
+  //     })
+  // }
 
+  // useEffect(() => {
+  //   fetchWells()
+  // }, [])
+
+  const [center, setCenter] = useState({ lat: 29.7954, lng: -95.5698 });
+  const [zoom, setZoom] = useState(11);
   return (
     <div style={{ height: "92vh", width: "100%" }}>
       <Map
@@ -40,17 +52,17 @@ const WellsMap = props => {
               name="My Marker"
               color="blue"
             />
-          )
+          );
         })}
       </Map>
     </div>
-  )
-}
+  );
+};
 
 const mapStateToProps = state => {
   return {
     wellsInfo: state.query.wellsInfo
-  }
-}
+  };
+};
 
-export default connect(mapStateToProps)(WellsMap)
+export default connect(mapStateToProps)(WellsMap);
