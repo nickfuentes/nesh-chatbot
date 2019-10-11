@@ -40,7 +40,7 @@ const WellsMap = props => {
               lat={well.lat}
               lng={well.long}
               name="My Marker"
-              color="blue"
+              color="#3384A5"
             />
           );
         })}
