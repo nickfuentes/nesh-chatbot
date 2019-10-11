@@ -5,6 +5,7 @@ const { Response } = require("node-fetch");
 
 module.exports = app => {
   app.post("/", async (req, res) => {
+    console.log("hellooo")
     const agent = new WebhookClient({ request: req, response: res });
 
     mapWells = async agent => {
@@ -12,7 +13,8 @@ module.exports = app => {
         const wells = await models.Eagleford.findAll({
           where: {
             diBasin: agent.parameters.Basin
-          }
+          },
+          limit: 100
         });
 
         const wellLocations = wells.map(well => {
