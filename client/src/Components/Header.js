@@ -3,11 +3,8 @@ import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
-    <nav>
-      <div
-        className="nav-wrapper"
-        style={{ backgroundColor: "rgba(50, 173, 222, 1)" }}
-      >
+    <nav className="custom-nav">
+      <div>
         <Link to={"/"} className="brand-logo left">
           <img
             className="responsive-img"
@@ -16,14 +13,6 @@ const Header = () => {
             alt="nesh"
           ></img>
         </Link>
-        <ul id="nav-mobile" className="right hide-on-med-and-down">
-          <li>
-            <Link to={"/shop"}>Holder</Link>
-          </li>
-          <li>
-            <Link to={"/about"}>Holder</Link>
-          </li>
-        </ul>
       </div>
     </nav>
   );

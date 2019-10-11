@@ -5,25 +5,7 @@ import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts'
 
 
 const TopTenCumBOE = props => {
-    // const [wells, setWells] = useState([])
-
-    // useEffect(() => {
-    //     fetchWells()
-    // },[])
- 
-
-    // const fetchWells = () => {
-    //     fetch("http://localhost:3001/max-boe")
-    //         .then(response => response.json())
-    //         .then(wells => {
-    //             console.log(wells)
-    //             setWells(wells)
-    //         }).catch(error => {
-    //             console.log(error)
-    //         })
-            
-    // }
-
+    
     const formatYaxis = (number) => {
         return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     }

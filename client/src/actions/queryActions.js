@@ -78,9 +78,7 @@ export const df_text_query = (messages, text) => {
             speaks: "nesh",
             msg: msg
           };
-
           console.log(says);
-
           queryMessages.push(says);
         }
 

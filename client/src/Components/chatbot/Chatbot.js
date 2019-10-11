@@ -149,7 +149,7 @@ class Chatbot extends Component {
     if (this.state.showBot) {
       return (
         <div className="chat-view">
-          <nav>
+          {/* <nav>
             <div
               style={{
                 backgroundColor: "rgba(50, 173, 222, 1)"
@@ -167,7 +167,7 @@ class Chatbot extends Component {
                 </li>
               </ul>
             </div>
-          </nav>
+          </nav> */}
 
           <div id="chatbot">
             {this.renderMessages(this.props.queryMessages)}
@@ -185,7 +185,9 @@ class Chatbot extends Component {
                   paddingLeft: "1%",
                   paddingRight: "1%",
                   width: "98%",
-                  backgroundColor: "#FFFFFF"
+                  backgroundColor: "#FFFFFF",
+                  borderRadius: 3,
+                  height: 40
                 }}
                 ref={input => {
                   this.talkInput = input;
