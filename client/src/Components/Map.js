@@ -1,9 +1,10 @@
 import React, { useState } from "react";
+import { connect } from "react-redux";
 // import Map from "google-map-react";
 // import Marker from "./Marker";
 // import { api_key } from "../config";
 
-const WellsMap = () => {
+const WellsMap = props => {
   const getMapOptions = ({ maps: any }) => {
     return {
       disableDefaultUI: true,
@@ -42,11 +43,12 @@ const WellsMap = () => {
         defaultZoom={zoom}
         options={getMapOptions}
       >
-        {wellsinfo.map(well => {
+        {props.wellsInfo.map(well => {
           return (
             <Marker
-              lat={well.surfaceHoleLatitude}
-              lng={well.surfaceHoleLongitude}
+              key={well.lat}
+              lat={well.lat}
+              lng={well.long}
               name="My Marker"
               color="blue"
             />
@@ -57,4 +59,10 @@ const WellsMap = () => {
   );
 };
 
-export default WellsMap;
+const mapStateToProps = state => {
+  return {
+    wellsInfo: state.query.wellsInfo
+  };
+};
+
+export default connect(mapStateToProps)(WellsMap);
