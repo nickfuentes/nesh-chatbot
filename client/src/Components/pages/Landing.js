@@ -1,15 +1,15 @@
 import React from "react";
 import Map from '../Map';
 import { connect } from 'react-redux';
-import Graph from '../Graph';
+import TopTenCumBOE from '../TopTenCum';
 
 const Landing = (props) => {
   const comp = props.compType
   console.log(comp)
-  if (comp == '') {
+  if (comp == 'cumBoe') {
     return (
       <div>
-        <Graph/>
+        <TopTenCumBOE />
       </div>
     );
   } else if (comp == 'Map') {
@@ -18,6 +18,8 @@ const Landing = (props) => {
         <Map/>
       </div>
     );
+  } else {
+    return null
   }
 };
 
