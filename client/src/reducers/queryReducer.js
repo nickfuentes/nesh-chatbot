@@ -1,7 +1,8 @@
 const initialState = {
   text: "",
   wellsInfo: [],
-  messages: []
+  messages: [],
+  cumBoe: []
 };
 
 export default function(state = initialState, action) {
@@ -12,6 +13,12 @@ export default function(state = initialState, action) {
         wellsInfo: action.payload.wellsInfo,
         messages: action.payload.messages
       };
+    case "GET_CUM_BOE":
+      return {
+        ...state,
+        cumBoe: action.payload.cumBoe,
+        messages: action.payload.messages
+      }
     // case "DF_TEXT_QUERY":
     //   return {
     //     ...state,
