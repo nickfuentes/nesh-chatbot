@@ -66,6 +66,7 @@
 .msg {
   border-radius: 30px 30px 30px 4px !important;
   padding: 0.7rem !important;
+  box-shadow: none !important;
 }
 
 .msg-inside {
@@ -80,6 +81,7 @@
 
 .nesh-msg {
   background-color: #f4e141 !important;
+  background: radial-gradient(ellipse at bottom, #fdeb43, #d1c237) !important;
 }
 
 .img-wrapper {
@@ -88,6 +90,7 @@
 
 .user-msg {
   background-color: #32aede !important;
+  background: radial-gradient(ellipse at bottom, #35b5e7, #2685aa) !important;
   border-radius: 30px 30px 4px 30px !important;
 }
 
