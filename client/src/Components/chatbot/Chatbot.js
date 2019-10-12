@@ -26,6 +26,7 @@ class Chatbot extends Component {
   componentDidMount() {
     // this.df_event_query("Welcome")
     // this.props.df_event_query("Welcome");
+    this.talkInput.focus();
   }
 
   componentDidUpdate() {
