@@ -77,26 +77,6 @@ class Chatbot extends Component {
     if (this.state.showBot) {
       return (
         <div className="chat-view">
-          {/* <nav>
-            <div
-              style={{
-                backgroundColor: "rgba(50, 173, 222, 1)"
-              }}
-              className="nav-wrapper"
-            >
-              <a href="/" className="brand-logo">
-                I'm Nesh
-              </a>
-              <ul id="nav-mobile" className="right hide-on-med-and-down">
-                <li>
-                  <a href="/" onClick={this.hide}>
-                    Close
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </nav> */}
-
           <div id="chatbot">
             {this.renderMessages(this.props.queryMessages)}
 
@@ -106,18 +86,37 @@ class Chatbot extends Component {
               }}
               style={{ float: "left", clear: "both" }}
             >
-              {/* <div className=" col s12"> */}
-              <input
-                className="chat-input"
-                ref={input => {
-                  this.talkInput = input;
-                }}
-                placeholder="Ask Nesh..."
-                onKeyPress={this._handleInputKeyPress}
-                id="user_says"
-                type="text"
-              />
-              {/* </div> */}
+              <div className="input-section">
+                <input
+                  className="chat-input"
+                  ref={input => {
+                    this.talkInput = input;
+                  }}
+                  placeholder="Ask Nesh..."
+                  onKeyPress={this._handleInputKeyPress}
+                  id="user_says"
+                  type="text"
+                />{" "}
+                {/* NESH CHAT SHOW/HIDE */}
+                <div
+                  style={{
+                    minHeight: 40,
+                    // maxHeight: 500,
+                    // width: 400,
+                    zIndex: 100
+                  }}
+                >
+                  <a href="/" onClick={this.hide}>
+                    <img
+                      src="robot.png"
+                      width="50"
+                      height="50"
+                      alt="nesh"
+                    ></img>
+                  </a>
+                </div>
+                {/* END OF SHOW BUTTON */}
+              </div>
             </div>
           </div>
         </div>
@@ -131,29 +130,16 @@ class Chatbot extends Component {
             width: 400,
             position: "absolute",
             bottom: 0,
-            right: 0,
-            border: "1px solid lightgray"
+            right: 40
           }}
         >
-          <nav>
-            <div
-              style={{
-                backgroundColor: "rgba(50, 173, 222, 1)"
-              }}
-              className="nav-wrapper"
-            >
-              <a style={{ marginLeft: "10px" }} href="/" className="brand-logo">
-                I'm Nesh
+          <ul className="right hide-on-med-and-down">
+            <li>
+              <a href="/" onClick={this.show}>
+                <img src="robot.png" width="50" height="50" alt="nesh"></img>
               </a>
-              <ul id="nav-mobile" className="right hide-on-med-and-down">
-                <li>
-                  <a href="/" onClick={this.show}>
-                    Show
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </nav>
+            </li>
+          </ul>
           <div
             ref={el => {
               this.messagesEnd = el;

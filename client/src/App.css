@@ -31,7 +31,7 @@
 }
 
 .view-details {
-  width: 75%;
+  width: 100%;
   height: 100vh;
 }
 
@@ -39,20 +39,17 @@
   padding: 3rem 0;
   margin: 0 auto;
   width: 85%;
-  /* text-align: center; */
 }
 
 .chat-view {
   flex: 1;
-  /* min-height: 100%; */
   height: 90%;
-  /* max-height: 470px; */
   width: auto;
   position: "absolute";
   bottom: 0;
   right: 0;
   margin-top: 2rem;
-  /* background-color: black; */
+  margin-right: 2.5rem;
 }
 
 #chatbot {
@@ -62,7 +59,7 @@
   overflow-y: scroll;
   width: 90%;
   position: relative;
-  min-width: 300px;
+  min-width: 400px;
   min-height: 80vh;
 }
 
@@ -86,7 +83,7 @@
 }
 
 .img-wrapper {
-  margin-right: 10px;
+  margin-right: 3px;
 }
 
 .user-msg {
@@ -96,6 +93,7 @@
 
 .user-text-msg {
   margin-left: 10px !important;
+  text-align: right;
 }
 
 .neshbot-img {
@@ -104,7 +102,15 @@
 }
 
 .map-view {
-  height: 70vh;
+  height: 80vh;
+  width: 100%;
+}
+
+.input-section {
+  display: flex;
+  position: fixed;
+  bottom: 5%;
+  bottom: 5%;
   width: 100%;
 }
 
@@ -115,10 +121,10 @@
   width: "98%";
   border-radius: 3px;
   height: 40px;
-  position: fixed;
   bottom: 5%;
-  width: 23% !important;
+  width: 24% !important;
   border-bottom: 1px solid white !important;
   color: white;
   z-index: 100;
+  max-width: 340px;
 }

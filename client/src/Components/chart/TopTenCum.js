@@ -19,7 +19,7 @@ const TopTenCumBOE = props => {
 
   return (
     <div>
-      <h3 style={{ color: "white" }}>Cumulative BOE</h3>
+      <h3 style={{ color: "white", textAlign: "center" }}>Cumulative BOE</h3>
       <div style={{ width: "100%", height: "70vh" }}>
         <ResponsiveContainer>
           <BarChart
