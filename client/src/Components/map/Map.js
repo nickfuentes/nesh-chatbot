@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { connect } from "react-redux";
 import Map from "google-map-react";
 import Marker from "./Marker";
-import { api_key } from "../config";
+import { api_key } from "../../config";
 
 const WellsMap = props => {
   const getMapOptions = ({ maps: any }) => {

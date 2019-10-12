@@ -3,7 +3,7 @@ import { BrowserRouter, Route } from "react-router-dom";
 import "../App.css";
 
 import Landing from "./pages/Landing";
-import Header from "./Header";
+import Header from "./pages/Header";
 import Chatbot from "./chatbot/Chatbot";
 
 const App = () => {

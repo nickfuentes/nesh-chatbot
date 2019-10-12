@@ -1,7 +1,7 @@
 import React from "react";
-import Map from "../Map";
+import Map from "../map/Map";
 import { connect } from "react-redux";
-import TopTenCumBOE from "../TopTenCum";
+import TopTenCumBOE from "../chart/TopTenCum";
 
 const Landing = props => {
   const comp = props.compType;
