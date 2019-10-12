@@ -8,7 +8,8 @@ import {
   YAxis,
   CartesianGrid,
   Tooltip,
-  Text
+  Text,
+  ResponsiveContainer
 } from "recharts";
 
 const TopTenCumBOE = props => {
@@ -19,38 +20,39 @@ const TopTenCumBOE = props => {
   return (
     <div>
       <h3 style={{ color: "white" }}>Cumulative BOE</h3>
-      <BarChart
-        width={900}
-        height={500}
-        data={props.cumBoe}
-        margin={{ top: 10, right: 30, left: 20, bottom: 5 }}
-        // viewBox={(0, 0, 600, 900)}
-      >
-        <CartesianGrid strokeDasharray="3 3" />
-        <XAxis
-          dataKey="wellName"
-          interval={0}
-          angle={45}
-          fontSize={12}
-          textAnchor="start"
-          height={200}
-          style={{
-            fill: "white",
-            // fontSize: "50%",
-            wordWrap: "break-word"
-          }}
-        />
-        <Text width={30} />
-        <YAxis
-          fontSize={12}
-          tickFormatter={formatYaxis}
-          style={{
-            fill: "white"
-          }}
-        />
-        <Tooltip formatter={formatYaxis} />
-        <Bar dataKey="cumBoe" fill="#349CDB" />
-      </BarChart>
+      <div style={{ width: "100%", height: "70vh" }}>
+        <ResponsiveContainer>
+          <BarChart
+            data={props.cumBoe}
+            margin={{ top: 10, right: 30, left: 20, bottom: 5 }}
+          >
+            <CartesianGrid strokeDasharray="3 3" />
+            <XAxis
+              dataKey="wellName"
+              interval={0}
+              angle={45}
+              fontSize={12}
+              textAnchor="start"
+              height={200}
+              style={{
+                fill: "white",
+                // fontSize: "50%",
+                wordWrap: "break-word"
+              }}
+            />
+            <Text width={30} />
+            <YAxis
+              fontSize={12}
+              tickFormatter={formatYaxis}
+              style={{
+                fill: "white"
+              }}
+            />
+            <Tooltip formatter={formatYaxis} />
+            <Bar dataKey="cumBoe" fill="#349CDB" />
+          </BarChart>
+        </ResponsiveContainer>
+      </div>
     </div>
   );
 };
