@@ -26,7 +26,6 @@ const TopTenCumBOE = props => {
           fontSize={12}
           textAnchor="start"
           height={200}
-          color="white"
         />
         <YAxis fontSize={12} tickFormatter={formatYaxis} />
         <Tooltip formatter={formatYaxis} />
