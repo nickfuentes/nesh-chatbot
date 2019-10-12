@@ -7,13 +7,13 @@ const Message = props => {
         <div className="card-panel z-depth-1 msg nesh-msg">
           <div className="row valign-wrapper msg-inside">
             <div className="col s2">
-              <a
+              <div
                 style={{ color: "black" }}
                 className="btn-floating btn-large waves-effect waves-light yellow user-pic"
               >
                 {/* {props.speaks} */}
                 <img className="neshbot-img" src="robot.png" alt="" />
-              </a>
+              </div>
             </div>
             <div className="col s10">
               <span className="black-text">{props.text}</span>
@@ -29,12 +29,12 @@ const Message = props => {
               <span className="white-text">{props.text}</span>
             </div>
             <div className="col s2">
-              <a
+              <div
                 style={{ color: "black" }}
                 className="btn-floating btn-large waves-effect waves-light yellow user-pic"
               >
                 {props.speaks}
-              </a>
+              </div>
             </div>
           </div>
         </div>

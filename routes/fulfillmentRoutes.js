@@ -29,15 +29,15 @@ module.exports = app => {
               agent.parameters.Basin
             )}`
           : `Here's all the wells`;
-        console.log(responseText);
+        // console.log(responseText);
 
-        console.log(agent.parameters);
+        // console.log(agent.parameters);
 
         let payload = new Payload("PLATFORM_UNSPECIFIED", {});
         const pay = payload.setPayload(wellLocations);
         agent.add(pay);
         agent.add(responseText);
-        console.log(payload);
+        // console.log(payload);
       } catch (error) {
         console.log(error);
       }
@@ -65,7 +65,7 @@ module.exports = app => {
         const pay = payload.setPayload(wellBOEs);
         agent.add(pay);
         agent.add(responseText);
-        console.log(payload);
+        // console.log(payload);
       } catch (error) {
         console.log(error);
       }

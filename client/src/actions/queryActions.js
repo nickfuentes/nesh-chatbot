@@ -12,10 +12,10 @@ export const df_text_query = (messages, text) => {
       }
     };
     queryMessages.push(says);
-    console.log(queryMessages);
+    // console.log(queryMessages);
     if (text !== "") {
       axios.post("/api/df_text_query", { text }).then(res => {
-        console.log(res);
+        // console.log(res);
 
         if (
           res.data[0].queryResult.webhookPayload &&
@@ -33,12 +33,12 @@ export const df_text_query = (messages, text) => {
           });
 
           for (let msg of res.data[0].queryResult.fulfillmentMessages) {
-            console.log(msg);
+            // console.log(msg);
             says = {
               speaks: "nesh",
               msg: msg
             };
-            console.log(says);
+            // console.log(says);
             queryMessages.push(says);
           }
 
@@ -52,7 +52,7 @@ export const df_text_query = (messages, text) => {
           return locations;
         } else if (
           res.data[0].queryResult.webhookPayload &&
-          res.data[0].queryResult.intent.displayName == "Cumulative BOE"
+          res.data[0].queryResult.intent.displayName === "Cumulative BOE"
         ) {
           const wellData =
             res.data[0].queryResult.webhookPayload.fields.null.listValue.values;
@@ -64,15 +64,15 @@ export const df_text_query = (messages, text) => {
 
             return cumData;
           });
-          console.log(graphData);
+          // console.log(graphData);
           for (let msg of res.data[0].queryResult.fulfillmentMessages) {
-            console.log(msg);
+            // console.log(msg);
 
             says = {
               speaks: "nesh",
               msg: msg
             };
-            console.log(says);
+            // console.log(says);
             queryMessages.push(says);
           }
 

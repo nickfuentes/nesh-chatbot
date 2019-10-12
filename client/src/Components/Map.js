@@ -20,8 +20,8 @@ const WellsMap = props => {
     };
   };
 
-  const [center, setCenter] = useState({ lat: 29.7954, lng: -95.5698 });
-  const [zoom, setZoom] = useState(4);
+  const [center] = useState({ lat: 29.7954, lng: -95.5698 });
+  const [zoom] = useState(4);
   return (
     <div
       className="map-view"

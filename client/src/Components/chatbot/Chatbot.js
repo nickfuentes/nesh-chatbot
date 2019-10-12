@@ -50,7 +50,7 @@ class Chatbot extends Component {
 
   renderMessages(stateMessages) {
     if (stateMessages) {
-      console.log(this.props.queryMessages);
+      // console.log(this.props.queryMessages);
       return stateMessages.map((message, i) => {
         return (
           <Message
