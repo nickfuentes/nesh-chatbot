@@ -36,7 +36,6 @@ const TopTenCumBOE = props => {
               height={200}
               style={{
                 fill: "white",
-                // fontSize: "50%",
                 wordWrap: "break-word"
               }}
             />

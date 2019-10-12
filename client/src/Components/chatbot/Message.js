@@ -2,9 +2,9 @@ import React from "react";
 
 const Message = props => {
   return (
-    <div className="col s12 m8 offset-m2 offset-l3">
+    <div className="col s12 m8 offset-m2 offset-l3 msg-wrapper">
       {props.speaks === "nesh" && (
-        <div className="card-panel z-depth-1 msg nesh-msg">
+        <div className="z-depth-1 msg nesh-msg">
           <div className="row valign-wrapper msg-inside">
             <div className="col s2">
               <div
@@ -23,7 +23,7 @@ const Message = props => {
       )}
 
       {props.speaks === "user" && (
-        <div className="card-panel z-depth-1 msg user-msg">
+        <div className="z-depth-1 msg user-msg">
           <div className="row valign-wrapper msg-inside">
             <div className="col s10 user-text-msg">
               <span className="white-text">{props.text}</span>
