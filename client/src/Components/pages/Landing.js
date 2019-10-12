@@ -5,19 +5,11 @@ import TopTenCumBOE from "../TopTenCum";
 
 const Landing = props => {
   const comp = props.compType;
-  // console.log(comp);
+
   if (comp === "cumBoe") {
-    return (
-      <div>
-        <TopTenCumBOE />
-      </div>
-    );
+    return <TopTenCumBOE />;
   } else if (comp === "Map") {
-    return (
-      <div>
-        <Map />
-      </div>
-    );
+    return <Map />;
   } else {
     return null;
   }

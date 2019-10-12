@@ -1,7 +1,15 @@
 import React from "react";
 import { connect } from "react-redux";
 import "../App.css";
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip } from "recharts";
+import {
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Text
+} from "recharts";
 
 const TopTenCumBOE = props => {
   const formatYaxis = number => {
@@ -16,7 +24,7 @@ const TopTenCumBOE = props => {
         height={500}
         data={props.cumBoe}
         margin={{ top: 10, right: 30, left: 20, bottom: 5 }}
-        viewBox={(0, 0, 600, 900)}
+        // viewBox={(0, 0, 600, 900)}
       >
         <CartesianGrid strokeDasharray="3 3" />
         <XAxis
@@ -26,8 +34,20 @@ const TopTenCumBOE = props => {
           fontSize={12}
           textAnchor="start"
           height={200}
+          style={{
+            fill: "white",
+            // fontSize: "50%",
+            wordWrap: "break-word"
+          }}
         />
-        <YAxis fontSize={12} tickFormatter={formatYaxis} />
+        <Text width={30} />
+        <YAxis
+          fontSize={12}
+          tickFormatter={formatYaxis}
+          style={{
+            fill: "white"
+          }}
+        />
         <Tooltip formatter={formatYaxis} />
         <Bar dataKey="cumBoe" fill="#349CDB" />
       </BarChart>
