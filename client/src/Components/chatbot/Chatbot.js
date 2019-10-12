@@ -105,8 +105,8 @@ class Chatbot extends Component {
                 this.messagesEnd = el;
               }}
               style={{ float: "left", clear: "both" }}
-            ></div>
-            <div className=" col s12">
+            >
+              {/* <div className=" col s12"> */}
               <input
                 className="chat-input"
                 ref={input => {
@@ -117,6 +117,7 @@ class Chatbot extends Component {
                 id="user_says"
                 type="text"
               />
+              {/* </div> */}
             </div>
           </div>
         </div>

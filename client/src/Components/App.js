@@ -13,7 +13,9 @@ const App = () => {
         <div className="main">
           <div className="view-details">
             <Header />
-            <Route exact path="/" component={Landing} />
+            <div className="content-view">
+              <Route exact path="/" component={Landing} />
+            </div>
           </div>
           <Chatbot />
         </div>

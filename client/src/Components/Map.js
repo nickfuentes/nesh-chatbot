@@ -21,12 +21,9 @@ const WellsMap = props => {
   };
 
   const [center] = useState({ lat: 29.7954, lng: -95.5698 });
-  const [zoom] = useState(4);
+  const [zoom] = useState(5);
   return (
-    <div
-      className="map-view"
-      // style={{ height: "100vh", width: "100%",  }}
-    >
+    <div className="map-view">
       <Map
         bootstrapURLKeys={{ key: api_key }}
         defaultCenter={center}
