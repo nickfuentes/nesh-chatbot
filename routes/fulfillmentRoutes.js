@@ -72,8 +72,8 @@ module.exports = app => {
     };
 
     function fallback(agent) {
-      agent.add(`Webhook I didn't understand`);
-      agent.add(`Webhook I'm sorry, can you try again?`);
+      // agent.add(`I didn't understand`);
+      agent.add(`I'm sorry, can you try again?`);
     }
 
     let intentMap = new Map();

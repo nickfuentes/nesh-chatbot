@@ -21,12 +21,12 @@ export default function(state = initialState, action) {
         cumBoe: action.payload.cumBoe,
         messages: action.payload.messages,
         compType: "cumBoe"
-      }
-    // case "DF_TEXT_QUERY":
-    //   return {
-    //     ...state,
-    //     text: action.payload.text
-    //   };
+      };
+    case "DF_TEXT_QUERY":
+      return {
+        ...state,
+        messages: action.payload.messages
+      };
     default:
       return state;
   }

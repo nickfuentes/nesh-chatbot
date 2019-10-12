@@ -85,6 +85,24 @@ export const df_text_query = (messages, text) => {
           });
 
           return graphData;
+        } else {
+          for (let msg of res.data[0].queryResult.fulfillmentMessages) {
+            // console.log(msg);
+
+            says = {
+              speaks: "nesh",
+              msg: msg
+            };
+            // console.log(says);
+            queryMessages.push(says);
+          }
+
+          dispatch({
+            type: "DF_TEXT_QUERY",
+            payload: {
+              messages: queryMessages
+            }
+          });
         }
       });
     }
