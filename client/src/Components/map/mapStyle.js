@@ -141,6 +141,23 @@ const mapStyle = [
     ]
   },
   {
+    featureType: "road.arterial",
+    elementType: "labels.icon",
+    stylers: [
+      {
+        visibility: "off"
+      }
+    ]
+  },
+  {
+    featureType: "road.highway",
+    stylers: [
+      {
+        visibility: "on"
+      }
+    ]
+  },
+  {
     featureType: "road.highway",
     elementType: "geometry",
     stylers: [
@@ -160,6 +177,15 @@ const mapStyle = [
   },
   {
     featureType: "road.highway",
+    elementType: "labels.icon",
+    stylers: [
+      {
+        visibility: "off"
+      }
+    ]
+  },
+  {
+    featureType: "road.highway",
     elementType: "labels.text.fill",
     stylers: [
       {
@@ -173,6 +199,15 @@ const mapStyle = [
     stylers: [
       {
         color: "#023e58"
+      }
+    ]
+  },
+  {
+    featureType: "road.local",
+    elementType: "labels.icon",
+    stylers: [
+      {
+        visibility: "off"
       }
     ]
   },
