@@ -30,14 +30,14 @@ const WellsMap = props => {
         defaultZoom={zoom}
         options={getMapOptions}
       >
-        {props.wellsInfo.map(well => {
+        {props.wellsInfo.map((well, i) => {
           return (
             <Marker
-              key={well.lat}
+              key={i}
               lat={well.lat}
               lng={well.long}
               name="My Marker"
-              color="#3384A5"
+              color="#1E5874"
             />
           );
         })}
