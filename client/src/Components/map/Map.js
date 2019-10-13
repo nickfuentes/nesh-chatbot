@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import Map from "google-map-react";
 import Marker from "./Marker";
 import { api_key } from "../../config";
+import mapStyle from "./mapStyle";
 
 const WellsMap = props => {
   const getMapOptions = ({ maps: any }) => {
@@ -10,13 +11,7 @@ const WellsMap = props => {
       disableDefaultUI: true,
       mapTypeControl: true,
       streetViewControl: true,
-      styles: [
-        {
-          featureType: "poi",
-          elementType: "labels",
-          stylers: [{ visibility: "on" }]
-        }
-      ]
+      styles: mapStyle
     };
   };
 
