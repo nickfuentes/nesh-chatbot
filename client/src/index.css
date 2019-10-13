@@ -1,6 +1,16 @@
 :root {
   --color-primary: #f4e141;
   --light-blue: #32aede;
+  /* #00cae9 */
+  /* #3384A5 */
+  /* #1E5874 */
+  /* #101C28 */
+  /* #f4e141 */
+}
+
+*::selection {
+  background-color: #3384a5;
+  color: white;
 }
 
 body {

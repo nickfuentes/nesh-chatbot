@@ -106,14 +106,21 @@ class Chatbot extends Component {
                     zIndex: 100
                   }}
                 >
-                  <a href="/" onClick={this.hide}>
+                  <button
+                    style={{
+                      border: "none",
+                      backgroundColor: "transparent",
+                      cursor: "pointer"
+                    }}
+                    onClick={this.hide}
+                  >
                     <img
                       src="robot.png"
                       width="50"
                       height="50"
                       alt="nesh"
                     ></img>
-                  </a>
+                  </button>
                 </div>
                 {/* END OF SHOW BUTTON */}
               </div>
@@ -135,9 +142,23 @@ class Chatbot extends Component {
         >
           <ul className="right hide-on-med-and-down">
             <li>
-              <a href="/" onClick={this.show}>
-                <img src="robot.png" width="50" height="50" alt="nesh"></img>
-              </a>
+              <button
+                aria-label="Open Chat"
+                style={{
+                  border: "none",
+                  backgroundColor: "transparent",
+                  cursor: "pointer"
+                }}
+                onClick={this.show}
+              >
+                <img
+                  aria-label="Open Chat"
+                  src="robot.png"
+                  width="50"
+                  height="50"
+                  alt="nesh"
+                ></img>
+              </button>
             </li>
           </ul>
           <div
