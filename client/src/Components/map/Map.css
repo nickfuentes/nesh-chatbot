@@ -2,6 +2,7 @@
 /* #3384A5 */
 /* #1E5874 */
 /* #101C28 */
+/* #f4e141 */
 
 .pin {
   width: 30px;
@@ -19,7 +20,7 @@
   width: 14px;
   height: 14px;
   margin: 8px 0 0 8px;
-  background: #f4e141;
+  background: #c5b73b;
   position: absolute;
   border-radius: 50%;
 }
@@ -31,7 +32,7 @@
 }
 
 .pulse {
-  background: #d6d4d4;
+  background: #101c28;
   border-radius: 50%;
   height: 14px;
   width: 14px;

@@ -140,6 +140,7 @@
 }
 
 .ex-queries h2 {
+  font-weight: 200;
 }
 
 .ex-queries h2,
@@ -149,4 +150,6 @@ p {
 
 .ex-queries p {
   margin: 4rem;
+  font-size: 1.4rem;
+  font-weight: 300;
 }
