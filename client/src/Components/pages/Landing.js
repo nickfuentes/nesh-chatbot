@@ -2,7 +2,8 @@ import React from "react";
 import Map from "../map/Map";
 import { connect } from "react-redux";
 import TopTenCumBOE from "../chart/TopTenCum";
-// import StackedAreaChart from "../chart/StackedChart";
+import StackedAreaChart from "../chart/StackedChart";
+import ExampleQueries from "./ExampleQueries";
 
 const Landing = props => {
   const comp = props.compType;
@@ -12,8 +13,9 @@ const Landing = props => {
   } else if (comp === "Map") {
     return <Map />;
   } else {
-    return null;
+    return <ExampleQueries />;
     // <StackedAreaChart />
+    // null;
   }
 };
 

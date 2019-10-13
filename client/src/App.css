@@ -138,3 +138,15 @@
   z-index: 100;
   max-width: 340px;
 }
+
+.ex-queries h2 {
+}
+
+.ex-queries h2,
+p {
+  text-align: center;
+}
+
+.ex-queries p {
+  margin: 4rem;
+}
