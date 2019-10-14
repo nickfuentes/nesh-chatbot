@@ -45,27 +45,53 @@ module.exports = app => {
 
     cumBOE = async agent => {
       try {
-        const wells = await models.Eagleford.findAll({
-          limit: 10,
-          order: [["cumBoe", "DESC NULLS LAST"]]
-        });
+        if(agent.parameters.Qual == 'highest') {
+          const wells = await models.Eagleford.findAll({
+            limit: 10,
+            order: [["cumBoe", "DESC NULLS LAST"]]
+          });
+  
+          const wellBOEs = wells.map(well => {
+            let wellBOE = {
+              wellName: well.dataValues.wellName,
+              cumBoe: well.dataValues.cumBoe
+            };
+            return wellBOE;
+          });
+  
+          const responseText =
+            "Here are the wells with the highest cumulative BOE";
+  
+          let payload = new Payload("PLATFORM_UNSPECIFIED", {});
+          const pay = payload.setPayload(wellBOEs);
+          agent.add(pay);
+          agent.add(responseText);
+          // console.log(payload);
 
-        const wellBOEs = wells.map(well => {
-          let wellBOE = {
-            wellName: well.dataValues.wellName,
-            cumBoe: well.dataValues.cumBoe
-          };
-          return wellBOE;
-        });
-
-        const responseText =
-          "Here are the wells with the highest cumulative BOE";
-
-        let payload = new Payload("PLATFORM_UNSPECIFIED", {});
-        const pay = payload.setPayload(wellBOEs);
-        agent.add(pay);
-        agent.add(responseText);
-        // console.log(payload);
+        } else if (agent.parameters.Qual == 'lowest') {
+          const wells = await models.Eagleford.findAll({
+            limit: 10,
+            order: [["cumBoe", "ASC NULLS LAST"]]
+          });
+  
+          const wellBOEs = wells.map(well => {
+            let wellBOE = {
+              wellName: well.dataValues.wellName,
+              cumBoe: well.dataValues.cumBoe
+            };
+            return wellBOE;
+          });
+  
+          const responseText =
+            "Here are the wells with the lowest cumulative BOE";
+  
+          let payload = new Payload("PLATFORM_UNSPECIFIED", {});
+          const pay = payload.setPayload(wellBOEs);
+          agent.add(pay);
+          agent.add(responseText);
+          // console.log(payload);
+        }
+        
       } catch (error) {
         console.log(error);
       }
