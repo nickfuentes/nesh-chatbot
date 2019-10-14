@@ -1,9 +1,6 @@
 import React, { Component } from "react";
-// import axios from "axios/index";
-// import Map from "google-map-react";
-// import Marker from "../Marker";
+import "./chatbot.css";
 import { connect } from "react-redux";
-// import { api_key } from "../../config";
 import { df_text_query } from "../../actions/queryActions";
 
 import Message from "./Message";

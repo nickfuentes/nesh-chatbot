@@ -6,6 +6,8 @@ import { api_key } from "../../config";
 import mapStyle from "./mapStyle";
 
 const WellsMap = props => {
+  // const wellsInfo = props.wellsInfo
+
   const getMapOptions = ({ maps: any }) => {
     return {
       disableDefaultUI: true,
@@ -42,6 +44,10 @@ const WellsMap = props => {
     // Bind the resize listener
     bindResizeListener(map, maps, bounds);
   };
+
+  // useEffect(() => {
+  //   console.log("render");
+  // });
 
   const [center] = useState({ lat: 29.7954, lng: -95.5698 });
   const [zoom] = useState(5);
