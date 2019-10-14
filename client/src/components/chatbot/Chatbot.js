@@ -8,18 +8,28 @@ import { df_text_query } from "../../actions/queryActions";
 
 import Message from "./Message";
 
+const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+const recognition = new SpeechRecognition();
+
+recognition.continuous = true;
+recognition.interimResults = true;
+recognition.lang = 'en-US';
+
 class Chatbot extends Component {
   messagesEnd;
   constructor(props) {
     super(props);
 
     this._handleInputKeyPress = this._handleInputKeyPress.bind(this);
+    this._toggleListen = this._toggleListen.bind(this);
+    this._handleListen = this._handleListen.bind(this);
     this.hide = this.hide.bind(this);
     this.show = this.show.bind(this);
 
     this.state = {
       messages: [],
-      showBot: true
+      showBot: true,
+      listening: false
     };
   }
 
@@ -65,6 +75,69 @@ class Chatbot extends Component {
     }
   }
 
+  _toggleListen() {
+    this.setState({
+      listening: !this.state.listening
+    }, this._handleListen)
+  }
+
+  _handleListen() {
+
+    console.log('listening?', this.state.listening)
+
+    if (this.state.listening) {
+      recognition.start()
+      recognition.onend = () => {
+        console.log("...continue listening...")
+        recognition.start()
+      }
+    } else {
+      recognition.stop()
+      recognition.onend = () => {
+        console.log("Stopped listening per click")
+      }
+    }
+
+    recognition.onstart = () => {
+      console.log("Listening!")
+    }
+
+    let finalTranscript = ''
+    recognition.onresult = event => {
+      let interimTranscript = ''
+
+      for (let i = event.resultIndex; i < event.results.length; i++) {
+        const transcript = event.results[i][0].transcript;
+        if (event.results[i].isFinal) finalTranscript += transcript + ' ';
+        else interimTranscript += transcript;
+      }
+      // if (finalTranscript === '') {
+      //   document.getElementById('user_says').dangerouslySetInnerHTML = interimTranscript
+      // } else {
+      //   document.getElementById('user_says').dangerouslySetInnerHTML = finalTranscript
+      // }
+
+      const transcriptArr = finalTranscript.split(' ')
+      const stopCmd = transcriptArr.slice(-3, -1)
+      console.log('stopCmd', stopCmd)
+
+      if (stopCmd[0] === 'thank' && stopCmd[1] === 'you') {
+        recognition.stop()
+        recognition.onend = () => {
+          console.log('Stopped listening per command')
+          const finalText = transcriptArr.slice(0, -3).join(' ')
+          const submittedText = finalText.charAt(0).toUpperCase() + finalText.substring(1)
+          this.props.df_text_query(this.props.queryMessages, submittedText)
+          // document.getElementById('user_says').dangerouslySetInnerHTML = ''
+        }
+      }
+    }
+
+    recognition.onerror = event => {
+      console.log("Error occured in recognition: " + event.error)
+    }
+  }
+
   _handleInputKeyPress(e) {
     if (e.key === "Enter") {
       this.props.df_text_query(this.props.queryMessages, e.target.value);
@@ -94,6 +167,7 @@ class Chatbot extends Component {
                   }}
                   placeholder="Ask Nesh..."
                   onKeyPress={this._handleInputKeyPress}
+                  onClick={this._toggleListen}
                   id="user_says"
                   type="text"
                 />{" "}
@@ -106,21 +180,14 @@ class Chatbot extends Component {
                     zIndex: 100
                   }}
                 >
-                  <button
-                    style={{
-                      border: "none",
-                      backgroundColor: "transparent",
-                      cursor: "pointer"
-                    }}
-                    onClick={this.hide}
-                  >
+                  <a href="/" onClick={this.hide}>
                     <img
                       src="robot.png"
                       width="50"
                       height="50"
                       alt="nesh"
                     ></img>
-                  </button>
+                  </a>
                 </div>
                 {/* END OF SHOW BUTTON */}
               </div>
@@ -142,23 +209,9 @@ class Chatbot extends Component {
         >
           <ul className="right hide-on-med-and-down">
             <li>
-              <button
-                aria-label="Open Chat"
-                style={{
-                  border: "none",
-                  backgroundColor: "transparent",
-                  cursor: "pointer"
-                }}
-                onClick={this.show}
-              >
-                <img
-                  aria-label="Open Chat"
-                  src="robot.png"
-                  width="50"
-                  height="50"
-                  alt="nesh"
-                ></img>
-              </button>
+              <a href="/" onClick={this.show}>
+                <img src="robot.png" width="50" height="50" alt="nesh"></img>
+              </a>
             </li>
           </ul>
           <div
