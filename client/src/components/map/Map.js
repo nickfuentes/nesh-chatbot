@@ -58,6 +58,10 @@ const WellsMap = props => {
         defaultCenter={center}
         defaultZoom={zoom}
         options={getMapOptions}
+        yesIWantToUseGoogleMapApiInternals
+        onGoogleApiLoaded={({ map, maps }) =>
+          apiIsLoaded(map, maps, props.wellsInfo)
+        }
       >
         {props.wellsInfo.map((well, i) => {
           return (
