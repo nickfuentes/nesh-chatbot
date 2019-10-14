@@ -93,26 +93,3 @@
   height: 40px;
   width: 40px;
 }
-
-.input-section {
-  display: flex;
-  position: fixed;
-  bottom: 5%;
-  bottom: 5%;
-  width: 100%;
-}
-
-.chat-input {
-  margin: 0;
-  padding-left: "1%";
-  padding-right: "1%";
-  width: "98%";
-  border-radius: 3px;
-  height: 40px;
-  bottom: 5%;
-  width: 24% !important;
-  border-bottom: 1px solid white !important;
-  color: white !important;
-  z-index: 100;
-  max-width: 340px;
-}
