@@ -36,6 +36,7 @@ class Chatbot extends Component {
   componentDidMount() {
     // this.df_event_query("Welcome")
     // this.props.df_event_query("Welcome");
+    this._toggleListen();
     this.talkInput.focus();
   }
 
@@ -44,6 +45,9 @@ class Chatbot extends Component {
     if (this.talkInput) {
       this.talkInput.focus();
     }
+    if(this.state.listening === false) {
+      this._toggleListen();
+    };
   }
 
   show(event) {
@@ -96,6 +100,7 @@ class Chatbot extends Component {
       recognition.onend = () => {
         console.log("Stopped listening per click")
       }
+      this._toggleListen()
     }
 
     recognition.onstart = () => {
@@ -111,11 +116,6 @@ class Chatbot extends Component {
         if (event.results[i].isFinal) finalTranscript += transcript + ' ';
         else interimTranscript += transcript;
       }
-      // if (finalTranscript === '') {
-      //   document.getElementById('user_says').dangerouslySetInnerHTML = interimTranscript
-      // } else {
-      //   document.getElementById('user_says').dangerouslySetInnerHTML = finalTranscript
-      // }
 
       const transcriptArr = finalTranscript.split(' ')
       const stopCmd = transcriptArr.slice(-3, -1)
@@ -126,15 +126,26 @@ class Chatbot extends Component {
         recognition.onend = () => {
           console.log('Stopped listening per command')
           const finalText = transcriptArr.slice(0, -3).join(' ')
-          const submittedText = finalText.charAt(0).toUpperCase() + finalText.substring(1)
+          const removeIntro = finalText.split('computer ')
+          const submittedText = removeIntro[1].charAt(0).toUpperCase() + removeIntro[1].substring(1)
           this.props.df_text_query(this.props.queryMessages, submittedText)
-          // document.getElementById('user_says').dangerouslySetInnerHTML = ''
+          this.setState({listening: !this.state.listening})
+        }
+      } else if (stopCmd[0] === 'thanks' || stopCmd[1] === 'thanks') {
+        recognition.stop()
+        recognition.onend = () => {
+          console.log('Stopped listening per command')
+          const finalText = transcriptArr.slice(0, -2).join(' ')
+          const removeIntro = finalText.split('computer ')
+          const submittedText = removeIntro[1].charAt(0).toUpperCase() + removeIntro[1].substring(1)
+          this.props.df_text_query(this.props.queryMessages, submittedText)
+          this.setState({listening: !this.state.listening})
         }
       }
-    }
 
-    recognition.onerror = event => {
-      console.log("Error occured in recognition: " + event.error)
+      recognition.onerror = event => {
+        console.log("Error occured in recognition: " + event.error)
+      }
     }
   }
 
