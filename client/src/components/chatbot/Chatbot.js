@@ -100,7 +100,7 @@ class Chatbot extends Component {
       recognition.onend = () => {
         console.log("Stopped listening per click");
       };
-      this._toggleListen();
+      // this._toggleListen();
     }
 
     recognition.onstart = () => {
@@ -182,7 +182,7 @@ class Chatbot extends Component {
                   }}
                   placeholder="Ask Nesh..."
                   onKeyPress={this._handleInputKeyPress}
-                  onClick={this._toggleListen}
+                  // onClick={this._toggleListen}
                   id="user_says"
                   type="text"
                 />{" "}
