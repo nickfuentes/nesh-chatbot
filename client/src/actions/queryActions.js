@@ -1,8 +1,8 @@
-import axios from "axios";
+import axios from "axios"
 
 export const df_text_query = (messages, text) => {
   return dispatch => {
-    const queryMessages = [...messages];
+    const queryMessages = [...messages]
     let says = {
       speaks: "user",
       msg: {
@@ -10,8 +10,8 @@ export const df_text_query = (messages, text) => {
           text: text
         }
       }
-    };
-    queryMessages.push(says);
+    }
+    queryMessages.push(says)
     // console.log(queryMessages);
     if (text !== "") {
       axios.post("/api/df_text_query", { text }).then(res => {
@@ -22,24 +22,26 @@ export const df_text_query = (messages, text) => {
           res.data[0].queryResult.intent.displayName === "Map Wells"
         ) {
           const cords =
-            res.data[0].queryResult.webhookPayload.fields.null.listValue.values;
+            res.data[0].queryResult.webhookPayload.fields.null.listValue.values
 
           const locations = cords.map(cord => {
             let coordinate = {
               lat: cord.structValue.fields.lat.numberValue,
-              long: cord.structValue.fields.long.numberValue
-            };
-            return coordinate;
-          });
+              long: cord.structValue.fields.long.numberValue,
+              name: cord.structValue.fields.name.stringValue,
+              operator: cord.structValue.fields.operator.stringValue
+            }
+            return coordinate
+          })
 
           for (let msg of res.data[0].queryResult.fulfillmentMessages) {
             // console.log(msg);
             says = {
               speaks: "nesh",
               msg: msg
-            };
+            }
             // console.log(says);
-            queryMessages.push(says);
+            queryMessages.push(says)
           }
 
           dispatch({
@@ -48,22 +50,22 @@ export const df_text_query = (messages, text) => {
               wellsInfo: locations,
               messages: queryMessages
             }
-          });
-          return locations;
+          })
+          return locations
         } else if (
           res.data[0].queryResult.webhookPayload &&
           res.data[0].queryResult.intent.displayName === "Cumulative BOE"
         ) {
           const wellData =
-            res.data[0].queryResult.webhookPayload.fields.null.listValue.values;
+            res.data[0].queryResult.webhookPayload.fields.null.listValue.values
           const graphData = wellData.map(data => {
             let cumData = {
               wellName: data.structValue.fields.wellName.stringValue,
               cumBoe: data.structValue.fields.cumBoe.numberValue
-            };
+            }
 
-            return cumData;
-          });
+            return cumData
+          })
           // console.log(graphData);
           for (let msg of res.data[0].queryResult.fulfillmentMessages) {
             // console.log(msg);
@@ -71,9 +73,9 @@ export const df_text_query = (messages, text) => {
             says = {
               speaks: "nesh",
               msg: msg
-            };
+            }
             // console.log(says);
-            queryMessages.push(says);
+            queryMessages.push(says)
           }
 
           dispatch({
@@ -82,9 +84,9 @@ export const df_text_query = (messages, text) => {
               cumBoe: graphData,
               messages: queryMessages
             }
-          });
+          })
 
-          return graphData;
+          return graphData
         } else {
           for (let msg of res.data[0].queryResult.fulfillmentMessages) {
             // console.log(msg);
@@ -92,9 +94,9 @@ export const df_text_query = (messages, text) => {
             says = {
               speaks: "nesh",
               msg: msg
-            };
+            }
             // console.log(says);
-            queryMessages.push(says);
+            queryMessages.push(says)
           }
 
           dispatch({
@@ -102,12 +104,12 @@ export const df_text_query = (messages, text) => {
             payload: {
               messages: queryMessages
             }
-          });
+          })
         }
-      });
+      })
     }
-  };
-};
+  }
+}
 
 // const old_df_text_query = async text => {
 //   let says = {
