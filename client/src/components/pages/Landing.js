@@ -14,7 +14,7 @@ const Landing = props => {
     return <Map />;
   } else {
     return <ExampleQueries />;
-    // <StackedAreaChart />;
+    // return <StackedAreaChart />;
 
     // null;
   }
