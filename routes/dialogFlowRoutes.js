@@ -19,10 +19,4 @@ module.exports = app => {
     );
     res.status(200).send(responses);
   });
-
-  // for audio queries
-  app.post("/api/df_audio_query", async (req, res) => {
-    let responses = await chatbot.audioQuery();
-    res.status(200).send(responses);
-  });
 };
