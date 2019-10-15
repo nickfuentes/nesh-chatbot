@@ -64,6 +64,11 @@ class Chatbot extends Component {
     if (stateMessages) {
       // console.log(this.props.queryMessages);
       return stateMessages.map((message, i) => {
+        if (stateMessages.length - 1 === i && message.speaks === "nesh") {
+          speechSynthesis.speak(
+            new SpeechSynthesisUtterance(message.msg.text.text)
+          );
+        }
         return (
           <Message
             key={i}
