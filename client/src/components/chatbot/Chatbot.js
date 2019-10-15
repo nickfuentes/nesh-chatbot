@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./chatbot.css";
 import { connect } from "react-redux";
 import { df_text_query } from "../../actions/queryActions";
+import { CSSTransition } from "react-transition-group";
 
 import Message from "./Message";
 
@@ -34,7 +35,7 @@ class Chatbot extends Component {
   componentDidMount() {
     // this.df_event_query("Welcome")
     // this.props.df_event_query("Welcome");
-    this._toggleListen();
+    // this._toggleListen();
     this.talkInput.focus();
   }
 
@@ -44,7 +45,7 @@ class Chatbot extends Component {
       this.talkInput.focus();
     }
     if (this.state.listening === false) {
-      this._toggleListen();
+      // this._toggleListen();
     }
   }
 
@@ -164,58 +165,65 @@ class Chatbot extends Component {
     // console.log(this.props);
     if (this.state.showBot) {
       return (
-        <div className="chat-view">
-          <div id="chatbot">
-            {this.renderMessages(this.props.queryMessages)}
+        <CSSTransition
+          in={this.showBot}
+          appear={true}
+          timeout={1000}
+          classNames="fade"
+        >
+          <div className="chat-view">
+            <div id="chatbot">
+              {this.renderMessages(this.props.queryMessages)}
 
-            <div
-              ref={el => {
-                this.messagesEnd = el;
-              }}
-              style={{ float: "left", clear: "both" }}
-            >
-              <div className="input-section">
-                <input
-                  className="chat-input"
-                  ref={input => {
-                    this.talkInput = input;
-                  }}
-                  placeholder="Ask Nesh..."
-                  onKeyPress={this._handleInputKeyPress}
-                  // onClick={this._toggleListen}
-                  id="user_says"
-                  type="text"
-                />{" "}
-                {/* NESH CHAT SHOW/HIDE */}
-                <div
-                  style={{
-                    minHeight: 40,
-                    // maxHeight: 500,
-                    // width: 400,
-                    zIndex: 100
-                  }}
-                >
-                  <button
-                    style={{
-                      border: "none",
-                      backgroundColor: "transparent",
-                      cursor: "pointer"
+              <div
+                ref={el => {
+                  this.messagesEnd = el;
+                }}
+                style={{ float: "left", clear: "both" }}
+              >
+                <div className="input-section">
+                  <input
+                    className="chat-input"
+                    ref={input => {
+                      this.talkInput = input;
                     }}
-                    onClick={this.hide}
+                    placeholder="Ask Nesh..."
+                    onKeyPress={this._handleInputKeyPress}
+                    // onClick={this._toggleListen}
+                    id="user_says"
+                    type="text"
+                  />{" "}
+                  {/* NESH CHAT SHOW/HIDE */}
+                  <div
+                    style={{
+                      minHeight: 40,
+                      // maxHeight: 500,
+                      // width: 400,
+                      zIndex: 100
+                    }}
                   >
-                    <img
-                      src="robot.png"
-                      width="50"
-                      height="50"
-                      alt="nesh"
-                    ></img>
-                  </button>
+                    <button
+                      style={{
+                        border: "none",
+                        backgroundColor: "transparent",
+                        cursor: "pointer"
+                      }}
+                      onClick={this.hide}
+                    >
+                      <img
+                        src="robot.png"
+                        width="50"
+                        height="50"
+                        alt="nesh"
+                      ></img>
+                    </button>
+                  </div>
+                  {/* END OF SHOW BUTTON */}
                 </div>
-                {/* END OF SHOW BUTTON */}
               </div>
             </div>
           </div>
-        </div>
+        </CSSTransition>
       );
     } else {
       return (

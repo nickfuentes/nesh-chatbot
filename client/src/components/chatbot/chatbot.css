@@ -1,6 +1,26 @@
-.map-view {
-  height: 80vh;
-  width: 100%;
+.fade-appear {
+  opacity: 0;
+  z-index: 1;
+}
+
+.fade-appear.fade-appear-active {
+  opacity: 1;
+  z-index: 1;
+}
+
+.fade-enter {
+  opacity: 1;
+  transition: opacity 1000ms linear;
+}
+
+.fade-enter {
+  opacity: 1;
+  z-index: 1;
+}
+
+.fade-enter.fade-enter-active {
+  opacity: 1;
+  transition: opacity 1000ms linear;
 }
 
 .chat-view {
