@@ -58,15 +58,21 @@ module.exports = app => {
             };
             return wellBOE;
           });
+
+          function formatNumber(x) {
+            return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
   
           const responseText =
-            "Here are the wells with the highest cumulative BOE";
+            `Here are the wells with the highest cumulative BOE. \n
+            The highest producing well is ${utils.titleCase(wells[0].wellName)}. \n
+            Its cumulative BOE is ${formatNumber(wells[0].cumBoe)}`;
   
           let payload = new Payload("PLATFORM_UNSPECIFIED", {});
           const pay = payload.setPayload(wellBOEs);
           agent.add(pay);
           agent.add(responseText);
-          // console.log(payload);
+          console.log(payload);
 
         } else if (agent.parameters.Qual == 'lowest') {
           const wells = await models.Eagleford.findAll({
@@ -83,7 +89,9 @@ module.exports = app => {
           });
   
           const responseText =
-            "Here are the wells with the lowest cumulative BOE";
+          `Here are the wells with the lowest cumulative BOE. \n
+          The lowest producing well is ${utils.titleCase(wells[0].wellName)}. \n
+          Its cumulative BOE is ${wells[0].cumBoe}`;
   
           let payload = new Payload("PLATFORM_UNSPECIFIED", {});
           const pay = payload.setPayload(wellBOEs);
