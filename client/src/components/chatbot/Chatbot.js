@@ -44,9 +44,9 @@ class Chatbot extends Component {
     if (this.talkInput) {
       this.talkInput.focus();
     }
-    if (this.state.listening === false) {
-      // this._toggleListen();
-    }
+    // if (this.state.listening === false) {
+    //   this._toggleListen();
+    // }
   }
 
   show(event) {
@@ -65,6 +65,11 @@ class Chatbot extends Component {
     if (stateMessages) {
       // console.log(this.props.queryMessages);
       return stateMessages.map((message, i) => {
+        if (stateMessages.length - 1 === i && message.speaks === "nesh") {
+          speechSynthesis.speak(
+            new SpeechSynthesisUtterance(message.msg.text.text)
+          );
+        }
         return (
           <Message
             key={i}
@@ -122,27 +127,29 @@ class Chatbot extends Component {
       const stopCmd = transcriptArr.slice(-3, -1);
       console.log("stopCmd", stopCmd);
 
-      if (stopCmd[0] === "thank" && stopCmd[1] === "you") {
+      if (stopCmd[0] === "send" && stopCmd[1] === "request") {
         recognition.stop();
         recognition.onend = () => {
           console.log("Stopped listening per command");
           const finalText = transcriptArr.slice(0, -3).join(" ");
-          const removeIntro = finalText.split("computer ");
+          // const removeIntro = finalText.split("computer ");
+          // const submittedText = removeIntro[1].charAt(0).toUpperCase() + removeIntro[1].substring(1);
           const submittedText =
-            removeIntro[1].charAt(0).toUpperCase() +
-            removeIntro[1].substring(1);
+            finalText.charAt(0).toUpperCase() + finalText.substring(1);
           this.props.df_text_query(this.props.queryMessages, submittedText);
           this.setState({ listening: !this.state.listening });
         };
-      } else if (stopCmd[0] === "thanks" || stopCmd[1] === "thanks") {
+      } else if (stopCmd[0] === "send" || stopCmd[1] === "send") {
         recognition.stop();
         recognition.onend = () => {
           console.log("Stopped listening per command");
           const finalText = transcriptArr.slice(0, -2).join(" ");
-          const removeIntro = finalText.split("computer ");
+          // const removeIntro = finalText.split("computer ");
+          // const submittedText =
+          //   removeIntro[1].charAt(0).toUpperCase() +
+          //   removeIntro[1].substring(1);
           const submittedText =
-            removeIntro[1].charAt(0).toUpperCase() +
-            removeIntro[1].substring(1);
+            finalText.charAt(0).toUpperCase() + finalText.substring(1);
           this.props.df_text_query(this.props.queryMessages, submittedText);
           this.setState({ listening: !this.state.listening });
         };
