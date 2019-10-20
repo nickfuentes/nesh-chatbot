@@ -1,7 +1,6 @@
 const express = require("express");
 const app = express();
 const cors = require("cors");
-const models = require("./models");
 
 app.use(cors());
 app.use(express.json());
@@ -12,16 +11,6 @@ require("./routes/dialogFlowRoutes")(app);
 require("./routes/fulfillmentRoutes")(app);
 // Various well queries
 require("./routes/wellRoutes")(app);
-
-// search top 10 cum BOE
-app.get("/max-boe", (req, res) => {
-  models.Eagleford.findAll({
-    limit: 10,
-    order: [["cumBoe", "DESC NULLS LAST"]]
-  }).then(wellsinfo => {
-    res.json(wellsinfo);
-  });
-});
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {

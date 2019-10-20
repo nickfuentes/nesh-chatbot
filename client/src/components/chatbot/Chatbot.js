@@ -178,7 +178,7 @@ class Chatbot extends Component {
           timeout={1000}
           classNames="fade"
         >
-          <div className="chat-view">
+          <div className="chat-view" style={{ transition: "all 0.2s linear" }}>
             <div id="chatbot">
               {this.renderMessages(this.props.queryMessages)}
 
@@ -196,7 +196,7 @@ class Chatbot extends Component {
                     }}
                     placeholder="Ask Nesh..."
                     onKeyPress={this._handleInputKeyPress}
-                    // onClick={this._toggleListen}
+                    onClick={this._toggleListen}
                     id="user_says"
                     type="text"
                   />{" "}

@@ -32,7 +32,18 @@
   right: 0;
   margin-top: 2rem;
   margin-right: 2.5rem;
+  transition: all 0.2s ease;
 }
+
+/* .chat-view {
+  visibility: visible;
+  opacity: 1;
+  transition: visibility 0s, opacity 0.5s linear;
+}
+.chat-view:hover {
+  visibility: hidden;
+  opacity: 0;
+} */
 
 #chatbot {
   max-height: 68vh;
@@ -59,7 +70,7 @@
 
 .message {
   background-color: #f4e141;
-  background: radial-gradient(ellipse at bottom, #fdeb43, #d1c237);
+  /* background: radial-gradient(ellipse at bottom, #fdeb43, #d1c237); */
   min-width: 9%;
   max-width: 60%;
   word-wrap: break-word;
@@ -80,7 +91,7 @@
 .message._right-message {
   margin-left: auto;
   background-color: #32aede;
-  background: radial-gradient(ellipse at bottom, #35b5e7, #2685aa);
+  /* background: radial-gradient(ellipse at bottom, #35b5e7, #2685aa); */
   color: #fff;
   border-radius: 44px 44px 4px 44px;
 }
