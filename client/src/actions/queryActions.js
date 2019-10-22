@@ -15,7 +15,7 @@ export const df_text_query = (messages, text) => {
     // console.log(queryMessages);
     if (text !== "") {
       axios
-        .post("https://nesh-chatbot.herokuapp.com/api/df_text_query", { text })
+        .post("https://hellonesh.herokuapp.com/api/df_text_query", { text })
         .then(res => {
           // console.log(res);
 
