@@ -93,24 +93,24 @@ class Chatbot extends Component {
   }
 
   _handleListen() {
-    console.log("listening?", this.state.listening);
+    // console.log("listening?", this.state.listening);
 
     if (this.state.listening) {
       recognition.start();
       recognition.onend = () => {
-        console.log("...continue listening...");
+        // console.log("...continue listening...");
         recognition.start();
       };
     } else {
       recognition.stop();
       recognition.onend = () => {
-        console.log("Stopped listening per click");
+        // console.log("Stopped listening per click");
       };
       // this._toggleListen();
     }
 
     recognition.onstart = () => {
-      console.log("Listening!");
+      // console.log("Listening!");
     };
 
     let finalTranscript = "";
@@ -125,12 +125,12 @@ class Chatbot extends Component {
 
       const transcriptArr = finalTranscript.split(" ");
       const stopCmd = transcriptArr.slice(-3, -1);
-      console.log("stopCmd", stopCmd);
+      // console.log("stopCmd", stopCmd);
 
       if (stopCmd[0] === "send" && stopCmd[1] === "request") {
         recognition.stop();
         recognition.onend = () => {
-          console.log("Stopped listening per command");
+          // console.log("Stopped listening per command");
           const finalText = transcriptArr.slice(0, -3).join(" ");
           // const removeIntro = finalText.split("computer ");
           // const submittedText = removeIntro[1].charAt(0).toUpperCase() + removeIntro[1].substring(1);
@@ -142,7 +142,7 @@ class Chatbot extends Component {
       } else if (stopCmd[0] === "send" || stopCmd[1] === "send") {
         recognition.stop();
         recognition.onend = () => {
-          console.log("Stopped listening per command");
+          // console.log("Stopped listening per command");
           const finalText = transcriptArr.slice(0, -2).join(" ");
           // const removeIntro = finalText.split("computer ");
           // const submittedText =
@@ -156,7 +156,7 @@ class Chatbot extends Component {
       }
 
       recognition.onerror = event => {
-        console.log("Error occured in recognition: " + event.error);
+        // console.log("Error occured in recognition: " + event.error);
       };
     };
   }

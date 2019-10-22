@@ -13,7 +13,7 @@ const Header = () => {
               marginTop: "1.2rem",
               cursor: "pointer"
             }}
-            src="https://hellonesh.io/static/images/nesh.png"
+            src="nesh.png"
             alt="nesh"
           ></img>
         </div>
